@@ -94,28 +94,200 @@
         </div>
       </div>
 
-      <h3>2. 自能和Dyson方程</h3>
+      <h3>2. 自能和Dyson方程的详细推导</h3>
       <div class="formula-container">
-        <p><strong>Dyson方程：</strong></p>
+        <p><strong>自能的物理意义：</strong></p>
+        <p>自能Σ(k,ω)描述了粒子在多体环境中由于相互作用而产生的能量和寿命修正。它包含了所有不可约的自能图的贡献。</p>
+        
+        <p><strong>Dyson方程的推导：</strong></p>
         <div class="formula">
-          G = G₀ + G₀ΣG
+          G(k,ω) = G₀(k,ω) + G₀(k,ω)Σ(k,ω)G(k,ω)
         </div>
+        <p>解得：</p>
+        <div class="formula">
+          G(k,ω) = 1/[G₀⁻¹(k,ω) - Σ(k,ω)] = 1/[ω - ε_k - Σ(k,ω)]
+        </div>
+        
         <p><strong>自能的微扰展开：</strong></p>
         <div class="formula">
           Σ = Σ⁽¹⁾ + Σ⁽²⁾ + Σ⁽³⁾ + ...
         </div>
+        
+        <p><strong>一阶自能（Hartree-Fock）：</strong></p>
+        <div class="formula">
+          Σ_HF(k) = ∑_q V(q)n(k-q) - ∑_q V(q)n(q)δ_{k,k-q}
+        </div>
+        <p>第一项是Hartree项（直接相互作用），第二项是Fock项（交换相互作用）</p>
+        
+        <p><strong>二阶自能：</strong></p>
+        <div class="formula">
+          Σ⁽²⁾(k,ω) = ∑_{q,ν} |V(q)|² G₀(k-q,ω-ν) W₀(q,ν)
+        </div>
+        <p>其中W₀是裸库仑相互作用的传播子</p>
       </div>
 
-      <h3>3. 谱表示</h3>
+      <h3>2.1 自能的解析性质</h3>
       <div class="theory-box">
-        <h4>Lehmann表示：</h4>
+        <h4>因果性和解析性：</h4>
+        <p><strong>因果性条件：</strong></p>
         <div class="formula">
-          G(k,ω) = ∑ₙ |⟨n|ψₖ|0⟩|²/(ω - Eₙ + E₀ + iη) + ∑ₘ |⟨0|ψₖ|m⟩|²/(ω + Eₘ - E₀ - iη)
+          Σ(k,t-t') = 0 for t < t'
         </div>
-        <p>其中谱函数为：</p>
+        
+        <p><strong>Kramers-Kronig关系：</strong></p>
         <div class="formula">
-          A(k,ω) = -1/π Im G(k,ω+iη)
+          Re Σ(k,ω) = P∫_{-∞}^∞ dω' Im Σ(k,ω')/(π(ω'-ω))
         </div>
+        <div class="formula">
+          Im Σ(k,ω) = -P∫_{-∞}^∞ dω' Re Σ(k,ω')/(π(ω'-ω))
+        </div>
+        
+        <p><strong>高频行为：</strong></p>
+        <div class="formula">
+          Σ(k,ω) → A/ω + B/ω² + ... (|ω| → ∞)
+        </div>
+      </div>
+
+      <h3>2.2 准粒子概念</h3>
+      <div class="formula-container">
+        <p><strong>准粒子能量：</strong></p>
+        <p>准粒子极点由以下方程确定：</p>
+        <div class="formula">
+          ω - ε_k - Σ(k,ω) = 0
+        </div>
+        
+        <p><strong>准粒子权重：</strong></p>
+        <div class="formula">
+          Z_k = [1 - ∂Σ(k,ω)/∂ω|_{ω=ε_k^qp}]⁻¹
+        </div>
+        
+        <p><strong>准粒子寿命：</strong></p>
+        <div class="formula">
+          τ_k = ℏ/[2|Im Σ(k,ε_k^qp)|]
+        </div>
+        
+        <p><strong>准粒子近似下的Green函数：</strong></p>
+        <div class="formula">
+          G(k,ω) ≈ Z_k/(ω - ε_k^qp + iΓ_k) + 非相干背景
+        </div>
+        <p>其中Γ_k = Im Σ(k,ε_k^qp)是准粒子阻尼</p>
+      </div>
+
+      <h3>2.3 自洽求解方法</h3>
+      <div class="key-points">
+        <h4>自洽循环：</h4>
+        <ul>
+          <li><strong>初始猜测：</strong> 选择初始的G₀或Σ₀</li>
+          <li><strong>计算自能：</strong> 根据选定的近似计算Σ[G]</li>
+          <li><strong>更新Green函数：</strong> G_new = [ω - ε_k - Σ]⁻¹</li>
+          <li><strong>检查收敛：</strong> |G_new - G_old| < tolerance</li>
+          <li><strong>迭代：</strong> 重复直到收敛</li>
+        </ul>
+        
+        <h4>收敛技巧：</h4>
+        <ul>
+          <li><strong>线性混合：</strong> G_mix = αG_new + (1-α)G_old</li>
+          <li><strong>Anderson混合：</strong> 利用历史信息加速收敛</li>
+          <li><strong>Broyden方法：</strong> 准牛顿法求解非线性方程</li>
+        </ul>
+      </div>
+
+      <h3>3. 谱表示的深入分析</h3>
+      <div class="theory-box">
+        <h4>Lehmann表示的推导：</h4>
+        <p>从Green函数的定义出发：</p>
+        <div class="formula">
+          G(k,ω) = -i∫_{-∞}^∞ dt e^{iωt} ⟨0|T[ψ_k(t)ψ_k†(0)]|0⟩
+        </div>
+        
+        <p>插入完备性关系∑_n |n⟩⟨n| = 1：</p>
+        <div class="formula">
+          G(k,ω) = ∑_n |⟨n|ψ_k|0⟩|²/(ω - (E_n - E_0) + iη) + ∑_m |⟨0|ψ_k|m⟩|²/(ω + (E_m - E_0) - iη)
+        </div>
+        
+        <p><strong>谱函数的定义：</strong></p>
+        <div class="formula">
+          A(k,ω) = -1/π Im G(k,ω+iη) = ∑_n |⟨n|ψ_k|0⟩|² δ(ω - (E_n - E_0)) + ∑_m |⟨0|ψ_k|m⟩|² δ(ω + (E_m - E_0))
+        </div>
+        
+        <p><strong>谱函数的物理意义：</strong></p>
+        <ul>
+          <li>A(k,ω > 0)：添加一个动量为k、能量为ω的粒子的概率密度</li>
+          <li>A(k,ω < 0)：移除一个动量为k、能量为|ω|的粒子的概率密度</li>
+          <li>积分归一化：∫_{-∞}^∞ A(k,ω) dω = 1</li>
+        </ul>
+      </div>
+
+      <h3>3.1 谱函数的性质和应用</h3>
+      <div class="formula-container">
+        <p><strong>谱权重转移：</strong></p>
+        <p>在相互作用系统中，谱权重从准粒子峰转移到非相干背景：</p>
+        <div class="formula">
+          ∫_{ω_qp-Δ}^{ω_qp+Δ} A(k,ω) dω = Z_k < 1
+        </div>
+        
+        <p><strong>动量分布：</strong></p>
+        <div class="formula">
+          n(k) = ⟨c_k†c_k⟩ = ∫_{-∞}^0 A(k,ω) dω
+        </div>
+        
+        <p><strong>态密度：</strong></p>
+        <div class="formula">
+          N(ω) = ∑_k A(k,ω)
+        </div>
+        
+        <p><strong>光电子谱强度：</strong></p>
+        <div class="formula">
+          I(k,ω) ∝ A(k,ω) f(ω) (ARPES实验)
+        </div>
+        <p>其中f(ω)是费米分布函数</p>
+      </div>
+
+      <h3>3.2 不同系统中的谱函数特征</h3>
+      <div class="key-points">
+        <h4>费米液体：</h4>
+        <ul>
+          <li><strong>准粒子峰：</strong> 尖锐的δ函数峰，权重Z_k ≈ 1</li>
+          <li><strong>非相干背景：</strong> 弱的宽带结构</li>
+          <li><strong>费米面：</strong> 清晰定义的费米面</li>
+        </ul>
+        
+        <h4>强关联系统：</h4>
+        <ul>
+          <li><strong>准粒子峰压制：</strong> Z_k ≪ 1</li>
+          <li><strong>Hubbard带：</strong> 上下Hubbard带分离</li>
+          <li><strong>Mott绝缘体：</strong> 费米能级处无谱权重</li>
+        </ul>
+        
+        <h4>超导体：</h4>
+        <ul>
+          <li><strong>相干峰：</strong> 能隙边缘的尖锐峰</li>
+          <li><strong>能隙：</strong> |ω| < Δ 区域无谱权重</li>
+          <li><strong>BCS-BEC渡越：</strong> 谱函数演化</li>
+        </ul>
+      </div>
+
+      <h3>3.3 解析延拓和数值方法</h3>
+      <div class="theory-box">
+        <h4>Padé近似：</h4>
+        <p>将Matsubara Green函数解析延拓到实频：</p>
+        <div class="formula">
+          G(iω_n) ≈ P_L^M(iω_n) = (a_0 + a_1 z + ... + a_L z^L)/(1 + b_1 z + ... + b_M z^M)
+        </div>
+        
+        <h4>最大熵方法：</h4>
+        <p>通过最大化熵函数求解谱函数：</p>
+        <div class="formula">
+          S[A] = -∫ A(ω) ln[A(ω)/D(ω)] dω
+        </div>
+        <p>约束条件：χ² = ∑_n |G(iω_n) - ∫ A(ω)/(iω_n - ω) dω|² < tolerance</p>
+        
+        <h4>随机解析延拓：</h4>
+        <ul>
+          <li><strong>采样方法：</strong> 蒙特卡洛采样谱函数空间</li>
+          <li><strong>平均谱函数：</strong> 对所有可能的谱函数求平均</li>
+          <li><strong>误差估计：</strong> 自然给出误差棒</li>
+        </ul>
       </div>
     </div>
 
@@ -260,35 +432,187 @@
     </div>
 
     <div class="content-section">
-      <h2>数值方法</h2>
+      <h2>现代计算方法与数值实现</h2>
       
-      <h3>1. 量子蒙特卡罗</h3>
-      <div class="key-points">
-        <h4>主要方法：</h4>
-        <ul>
-          <li><strong>路径积分蒙特卡罗：</strong> 处理玻色系统</li>
-          <li><strong>辅助场蒙特卡罗：</strong> 处理费米系统</li>
-          <li><strong>连续时间蒙特卡罗：</strong> 避免Trotter误差</li>
-        </ul>
-      </div>
-
-      <h3>2. 精确对角化</h3>
-      <div class="theory-box">
-        <h4>适用范围：</h4>
-        <ul>
-          <li><strong>小系统：</strong> 通常N < 20</li>
-          <li><strong>基态性质：</strong> Lanczos算法</li>
-          <li><strong>动力学性质：</strong> 连分数展开</li>
-        </ul>
-      </div>
-
-      <h3>3. 密度矩阵重整化群</h3>
+      <h3>1. 高性能计算技术</h3>
       <div class="formula-container">
-        <p><strong>截断条件：</strong></p>
+        <p><strong>并行化策略：</strong></p>
+        <ul>
+          <li><strong>k点并行：</strong> 不同处理器计算不同k点的Green函数</li>
+          <li><strong>频率并行：</strong> 并行计算不同Matsubara频率</li>
+          <li><strong>MPI+OpenMP混合：</strong> 节点间和节点内并行</li>
+        </ul>
+        
+        <p><strong>内存优化：</strong></p>
         <div class="formula">
-          ∑ᵢ₌ₘ₊₁^D λᵢ < ε
+          Memory ≈ N_k × N_ω × N_orb² × 16 bytes (复数双精度)
         </div>
-        <p>其中λᵢ是密度矩阵的本征值。</p>
+        <ul>
+          <li><strong>分块存储：</strong> 避免内存溢出</li>
+          <li><strong>对称性利用：</strong> 减少存储需求</li>
+          <li><strong>压缩技术：</strong> 稀疏矩阵存储</li>
+        </ul>
+      </div>
+
+      <h3>2. 机器学习辅助方法</h3>
+      <div class="theory-box">
+        <h4>神经网络解析延拓：</h4>
+        <p>训练神经网络学习Matsubara数据到实频谱函数的映射：</p>
+        <div class="formula">
+          A(ω) = NN[G(iω_n); θ]
+        </div>
+        
+        <h4>强化学习优化：</h4>
+        <ul>
+          <li><strong>自洽循环优化：</strong> 智能选择混合参数</li>
+          <li><strong>参数搜索：</strong> 自动调节计算参数</li>
+          <li><strong>收敛加速：</strong> 预测最优迭代路径</li>
+        </ul>
+        
+        <h4>变分量子本征求解器(VQE)：</h4>
+        <div class="formula">
+          |ψ(θ)⟩ = U(θ)|0⟩, E(θ) = ⟨ψ(θ)|H|ψ(θ)⟩
+        </div>
+        <p>结合经典优化和量子计算求解强关联问题</p>
+      </div>
+
+      <h3>3. 实际计算流程</h3>
+      <div class="key-points">
+        <h4>DMFT计算步骤：</h4>
+        <ul>
+          <li><strong>1. 初始化：</strong> 设置初始自能Σ₀(iω_n)</li>
+          <li><strong>2. 计算局域Green函数：</strong> G_loc = ∫ G(k,iω_n) dk</li>
+          <li><strong>3. 提取Weiss场：</strong> G₀⁻¹ = G_loc⁻¹ + Σ</li>
+          <li><strong>4. 求解杂质问题：</strong> 使用QMC/ED/NRG</li>
+          <li><strong>5. 更新自能：</strong> Σ_new = G₀⁻¹ - G_imp⁻¹</li>
+          <li><strong>6. 检查收敛：</strong> |Σ_new - Σ_old| < ε</li>
+        </ul>
+        
+        <h4>GW计算要点：</h4>
+        <ul>
+          <li><strong>屏蔽计算：</strong> W = ε⁻¹v，ε = 1 - vP</li>
+          <li><strong>自能积分：</strong> Σ = iGW (卷积积分)</li>
+          <li><strong>准粒子方程：</strong> 求解非线性方程组</li>
+          <li><strong>解析延拓：</strong> 从虚时间到实频</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>实验技术与理论对比</h2>
+      
+      <h3>1. 角分辨光电子能谱(ARPES)</h3>
+      <div class="formula-container">
+        <p><strong>光电子发射强度：</strong></p>
+        <div class="formula">
+          I(k,ω) = I₀ |M(k,ω)|² A(k,ω) f(ω) R(ω)
+        </div>
+        <p>其中：</p>
+        <ul>
+          <li>M(k,ω)：矩阵元，依赖于光子能量和偏振</li>
+          <li>A(k,ω)：理论谱函数</li>
+          <li>f(ω)：费米-狄拉克分布</li>
+          <li>R(ω)：仪器分辨函数</li>
+        </ul>
+        
+        <p><strong>能量和动量分辨率：</strong></p>
+        <div class="formula">
+          ΔE ≈ 1-10 meV, Δk ≈ 0.01 Å⁻¹
+        </div>
+      </div>
+
+      <h3>2. 扫描隧道显微镜(STM/STS)</h3>
+      <div class="theory-box">
+        <h4>隧道电流与局域态密度：</h4>
+        <div class="formula">
+          I(V) ∝ ∫_{-∞}^{eV} ρ_s(E) ρ_t(E-eV) T(E,V) dE
+        </div>
+        <p>在低偏压下：</p>
+        <div class="formula">
+          dI/dV|_{V=0} ∝ ρ_s(E_F) = ∑_k A(k,0)
+        </div>
+        
+        <h4>准粒子干涉(QPI)：</h4>
+        <p>通过傅里叶变换STM图像观察散射矢量：</p>
+        <div class="formula">
+          q_i = k_f - k_i (费米面上的散射)
+        </div>
+      </div>
+
+      <h3>3. 中子散射</h3>
+      <div class="formula-container">
+        <p><strong>动力学结构因子：</strong></p>
+        <div class="formula">
+          S(q,ω) = ∫ dt e^{iωt} ⟨ρ_q(t)ρ_{-q}(0)⟩
+        </div>
+        
+        <p><strong>与Green函数的关系：</strong></p>
+        <div class="formula">
+          S(q,ω) = -1/π Im χ(q,ω) = -1/π Im ∑_k G(k,ω)G(k+q,ω)
+        </div>
+        
+        <p><strong>磁激发谱：</strong></p>
+        <div class="formula">
+          S^{mag}(q,ω) ∝ Im χ^{spin}(q,ω)
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>前沿发展与未来方向</h2>
+      
+      <h3>1. 量子计算与格林函数</h3>
+      <div class="key-points">
+        <h4>量子算法：</h4>
+        <ul>
+          <li><strong>变分量子本征求解器：</strong> 求解基态和激发态</li>
+          <li><strong>量子相位估计：</strong> 直接测量本征值</li>
+          <li><strong>量子蒙特卡洛：</strong> 避免符号问题</li>
+          <li><strong>量子机器学习：</strong> 加速解析延拓</li>
+        </ul>
+        
+        <h4>NISQ时代应用：</h4>
+        <ul>
+          <li><strong>小分子系统：</strong> H₂, LiH, BeH₂等</li>
+          <li><strong>Hubbard模型：</strong> 2×2, 3×3晶格</li>
+          <li><strong>混合算法：</strong> 量子-经典协同计算</li>
+        </ul>
+      </div>
+
+      <h3>2. 人工智能与多体理论</h3>
+      <div class="theory-box">
+        <h4>深度学习应用：</h4>
+        <ul>
+          <li><strong>神经网络量子态：</strong> 表示复杂多体波函数</li>
+          <li><strong>生成模型：</strong> 学习量子态分布</li>
+          <li><strong>强化学习：</strong> 优化计算策略</li>
+          <li><strong>图神经网络：</strong> 处理晶格结构</li>
+        </ul>
+        
+        <h4>可解释AI：</h4>
+        <div class="formula">
+          物理洞察 = f(数据驱动发现, 理论指导, 实验验证)
+        </div>
+      </div>
+
+      <h3>3. 非平衡与开放系统</h3>
+      <div class="formula-container">
+        <p><strong>Lindblad主方程：</strong></p>
+        <div class="formula">
+          dρ/dt = -i[H,ρ] + ∑_k (L_k ρ L_k† - 1/2{L_k†L_k, ρ})
+        </div>
+        
+        <p><strong>非平衡稳态：</strong></p>
+        <div class="formula">
+          G^<(t,t') = i⟨ψ†(t')ψ(t)⟩_{NESS}
+        </div>
+        
+        <p><strong>量子输运：</strong></p>
+        <ul>
+          <li><strong>Floquet工程：</strong> 周期驱动系统</li>
+          <li><strong>拓扑泵浦：</strong> 绝热输运</li>
+          <li><strong>量子热机：</strong> 非平衡热力学</li>
+        </ul>
       </div>
     </div>
 

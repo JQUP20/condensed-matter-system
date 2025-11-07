@@ -141,6 +141,47 @@
               </div>
             </div>
           </div>
+
+          <div class="pioneer-card featured">
+            <div class="pioneer-avatar">
+              <div class="avatar-placeholder">P.A.</div>
+            </div>
+            <div class="pioneer-info">
+              <h3>Philip Warren Anderson (1923-2020)</h3>
+              <p class="pioneer-title">凝聚态物理学之父</p>
+              <div class="contribution">
+                <h4>主要贡献：</h4>
+                <ul>
+                  <li>Anderson局域化理论</li>
+                  <li>Anderson杂质模型</li>
+                  <li>Anderson-Higgs机制</li>
+                  <li>RVB理论与量子自旋液体</li>
+                  <li>"More is Different"哲学思想</li>
+                </ul>
+              </div>
+              <div class="detailed-biography">
+                <h4>理论物理学巨匠：</h4>
+                <p>Anderson被誉为"凝聚态物理学之父"，他不仅创立了多个重要理论分支，更重要的是提出了"涌现"概念，强调复杂系统中整体性质不能简单地从部分性质推导出来。</p>
+                <div class="anderson-achievements">
+                  <h5>重大理论突破：</h5>
+                  <ul>
+                    <li><strong>局域化理论(1958)：</strong>预言无序系统中电子的局域化现象，颠覆了传统的输运理论</li>
+                    <li><strong>Anderson杂质模型(1961)：</strong>描述磁性杂质与传导电子的相互作用，奠定了强关联电子系统理论基础</li>
+                    <li><strong>对称性破缺机制(1962)：</strong>在超导理论中提出规范对称性破缺，为粒子物理标准模型做出重要贡献</li>
+                    <li><strong>RVB理论(1973)：</strong>提出共振价键理论，为高温超导和量子自旋液体研究开辟新方向</li>
+                  </ul>
+                </div>
+                <div class="nobel-recognition">
+                  <h5>诺贝尔奖成就(1977年)：</h5>
+                  <p>因"对磁性和无序系统电子结构的基础性理论研究"获得诺贝尔物理学奖，与Nevill Mott和John van Vleck共同获奖。他的工作为现代电子器件和计算机存储技术的发展奠定了理论基础。</p>
+                </div>
+                <div class="philosophical-impact">
+                  <h5>科学哲学贡献：</h5>
+                  <p>Anderson在1972年发表的著名文章"More is Different"中提出，复杂系统的性质不能简单地从其组成部分的性质推导出来，这一思想深刻影响了复杂系统科学的发展，成为现代科学哲学的重要组成部分。</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -431,9 +472,43 @@
 }
 
 .pioneer-card.featured {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
   color: white;
   border: none;
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+}
+
+.pioneer-card.featured:hover {
+  box-shadow: 0 20px 50px rgba(255, 107, 107, 0.4);
+}
+
+.anderson-achievements, .nobel-recognition, .philosophical-impact {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  border-left: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.anderson-achievements h5, .nobel-recognition h5, .philosophical-impact h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.anderson-achievements ul {
+  list-style: none;
+  padding: 0;
+}
+
+.anderson-achievements li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.anderson-achievements li:last-child {
+  border-bottom: none;
 }
 
 .pioneer-card:hover {

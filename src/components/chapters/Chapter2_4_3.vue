@@ -1,447 +1,834 @@
 <template>
   <div class="chapter-content">
     <div class="chapter-header">
-      <h1 class="chapter-title">2.4.3 理想玻色气体与玻色-爱因斯坦凝聚</h1>
+      <h1 class="chapter-title">2.4.3 Hartree-Fock平均场近似</h1>
       <div class="chapter-meta">
-        <span class="chapter-tag">玻色统计</span>
-        <span class="reading-time">预计阅读时间: 35分钟</span>
+        <span class="chapter-tag">平均场理论</span>
+        <span class="chapter-tag">多体系统</span>
+        <span class="reading-time">预计阅读时间: 50分钟</span>
       </div>
     </div>
 
     <div class="chapter-body">
       <section class="introduction">
-        <h2>玻色-爱因斯坦统计</h2>
+        <h2>🌟 平均场理论概述</h2>
         <p class="lead-text">
-          玻色子遵循玻色-爱因斯坦统计，允许多个粒子占据同一量子态。
-          在足够低的温度下，宏观数量的玻色子会凝聚到基态，形成玻色-爱因斯坦凝聚态，这是量子统计效应的一个壮观体现。
+          Hartree-Fock方法是处理多体量子系统的基本理论框架，通过平均场近似将复杂的多体问题转化为有效的单体问题。
+          这一方法不仅为理解原子、分子和固体的电子结构奠定了基础，也为现代密度泛函理论等先进方法提供了重要的理论起点。
         </p>
       </section>
 
-      <section class="content-section">
-        <h2>玻色-爱因斯坦分布</h2>
-        <div class="concept-grid">
-          <div class="concept-card">
-            <div class="concept-icon">📊</div>
-            <h3>分布函数</h3>
-            <p>玻色子的占据概率</p>
-            <div class="mathematical-content">
-              <h4>基本形式：</h4>
+      <section class="many-body-problem-section">
+        <h2>🧩 多体问题的挑战</h2>
+        <div class="problem-grid">
+          <div class="problem-card complexity">
+            <div class="problem-icon">🌀</div>
+            <h3>指数复杂性</h3>
+            <div class="problem-content">
+              <h4>维度灾难：</h4>
               <div class="equation-block">
-                <p>n(ε) = 1/(e^((ε-μ)/(kBT)) - 1)</p>
-                <p>μ < ε₀ (化学势小于基态能量)</p>
+                <p>N个粒子系统：3N维配置空间</p>
+                <p>波函数：Ψ(r₁,r₂,...,rₙ)</p>
+                <p>计算复杂度：O(e^N)</p>
               </div>
               
-              <h4>与费米分布比较：</h4>
+              <h4>实际例子：</h4>
+              <div class="physics-insight">
+                <p><strong>氢分子：</strong>2个电子，6维问题</p>
+                <p><strong>苯分子：</strong>42个电子，126维问题</p>
+                <p><strong>蛋白质：</strong>~10⁴个电子，不可求解</p>
+              </div>
+              
+              <h4>近似的必要性：</h4>
               <div class="equation-block">
-                <p>玻色：分母中是 -1</p>
-                <p>费米：分母中是 +1</p>
-                <p>导致完全不同的物理性质</p>
+                <p>精确解：仅限于H原子、H₂⁺离子</p>
+                <p>数值解：最多几十个电子</p>
+                <p>近似方法：唯一的实用途径</p>
               </div>
             </div>
           </div>
 
-          <div class="concept-card">
-            <div class="concept-icon">❄️</div>
-            <h3>临界温度</h3>
-            <p>玻色-爱因斯坦凝聚的条件</p>
-            <div class="mathematical-content">
-              <h4>临界温度：</h4>
-              <div class="equation-block">
-                <p>kBTc = 2πℏ²/(m)(n/ζ(3/2))^(2/3)</p>
-                <p>ζ(3/2) ≈ 2.612</p>
+          <div class="problem-card correlation">
+            <div class="problem-icon">🔗</div>
+            <h3>电子关联效应</h3>
+            <div class="problem-content">
+              <h4>库仑相互作用：</h4>
+              <div class="equation-block" v-pre>
+                <p>V̂ₑₑ = ∑ᵢ<ⱼ e²/(4πε₀|rᵢ-rⱼ|)</p>
+                <p>长程、非局域相互作用</p>
+                <p>无法分离变量</p>
               </div>
               
-              <h4>德布罗意波长：</h4>
+              <h4>关联类型：</h4>
+              <div class="physics-insight">
+                <p><strong>库仑关联：</strong>电荷排斥导致的空间关联</p>
+                <p><strong>交换关联：</strong>Pauli原理导致的自旋关联</p>
+                <p><strong>动力学关联：</strong>电子运动的协调性</p>
+              </div>
+              
+              <h4>关联能：</h4>
               <div class="equation-block">
-                <p>λdB = h/√(2πmkBT)</p>
-                <p>T = Tc时：λdB ~ n^(-1/3)</p>
+                <p>E_corr = E_exact - E_HF</p>
+                <p>典型值：~1-10% 总能量</p>
+                <p>化学精度：~1 kcal/mol</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="problem-card antisymmetry">
+            <div class="problem-icon">🔄</div>
+            <h3>反对称性约束</h3>
+            <div class="problem-content">
+              <h4>Pauli原理：</h4>
+              <div class="equation-block">
+                <p>Ψ(r₁σ₁,...,rᵢσᵢ,rⱼσⱼ,...,rₙσₙ)</p>
+                <p>= -Ψ(r₁σ₁,...,rⱼσⱼ,rᵢσᵢ,...,rₙσₙ)</p>
+                <p>费米子波函数的反对称性</p>
+              </div>
+              
+              <h4>Slater行列式：</h4>
+              <div class="physics-insight">
+                <p><strong>自动满足：</strong>反对称性要求</p>
+                <p><strong>单行列式：</strong>Hartree-Fock近似</p>
+                <p><strong>多行列式：</strong>组态相互作用方法</p>
+              </div>
+              
+              <h4>交换积分：</h4>
+              <div class="equation-block">
+                <p>K_ij = ∫ φᵢ*(r₁)φⱼ*(r₂) (e²/r₁₂) φⱼ(r₁)φᵢ(r₂) dr₁dr₂</p>
+                <p>非经典的量子效应</p>
+                <p>降低系统总能量</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2>玻色-爱因斯坦凝聚</h2>
-        <div class="bec-section">
-          <div class="concept-card">
-            <div class="concept-icon">🌟</div>
-            <h3>凝聚现象</h3>
-            <p>宏观占据基态</p>
-            <div class="mathematical-content">
-              <h4>T < Tc时：</h4>
+      <section class="hartree-fock-theory">
+        <h2>⚛️ Hartree-Fock理论框架</h2>
+        <div class="hf-theory-content">
+          
+          <div class="detailed-hf-analysis">
+            <h3>🔬 Hartree-Fock方程的详细推导</h3>
+            <div class="derivation-content">
+              <div class="energy-functional">
+                <h4>📊 能量泛函与变分原理</h4>
+                <div class="equation-block">
+                  <p><strong>总能量表达式：</strong></p>
+                  <div class="math-display">
+                    $$\Delta E = \langle A \rangle + A - \langle A \rangle\langle B \rangle + B - \langle B \rangle = \langle A \rangle + \Delta A + \langle B \rangle + \Delta B$$
+                  </div>
+                  <p class="equation-note">
+                    这里A和B表示系统中不同的物理量，⟨⟩表示期望值，Δ表示涨落。
+                  </p>
+                </div>
+
+                <div class="hartree-fock-approximation">
+                  <h4>🎯 Hartree-Fock平均场近似</h4>
+                  <div class="approximation-details">
+                    <p><strong>基本思想：</strong></p>
+                    <p>
+                      对于一个电子系统，通过求解有效单电子方程来处理多体问题。
+                      每个电子在其他所有电子产生的平均场中运动，这样就将复杂的多体问题
+                      转化为一系列耦合的单体问题。
+                    </p>
+
+                    <div class="equation-block">
+                      <p><strong>平均场近似下的能量修正：</strong></p>
+                      <div class="math-display">
+                        $$\Delta E = \langle A \rangle B + \langle A \rangle \Delta B + \langle B \rangle \Delta A + \Delta A \Delta B$$
+                      </div>
+                      <p class="equation-note">
+                        在平均场近似中，我们忽略涨落项的乘积ΔA·ΔB，这是Hartree-Fock理论的核心近似。
+                      </p>
+                    </div>
+
+                    <div class="detailed-derivation">
+                      <h5>📐 详细推导过程</h5>
+                      <div class="derivation-steps">
+                        <div class="derivation-step">
+                          <h6>步骤1：哈密顿量分解</h6>
+                          <div class="math-display" v-pre>
+                            $$\hat{H} = \sum_i \hat{h}_i + \sum_{i&lt;j} \frac{e^2}{|\mathbf{r}_i - \mathbf{r}_j|}$$
+                          </div>
+                          <p>其中第一项是单电子项，第二项是电子-电子相互作用项。</p>
+                        </div>
+
+                        <div class="derivation-step">
+                          <h6>步骤2：Slater行列式波函数</h6>
+                          <div class="math-display" v-pre>
+                            $$\Psi_{HF} = \frac{1}{\sqrt{N!}} \det[\phi_1(\mathbf{r}_1) \phi_2(\mathbf{r}_2) \cdots \phi_N(\mathbf{r}_N)]$$
+                          </div>
+                          <p>使用单个Slater行列式来近似多电子波函数。</p>
+                        </div>
+
+                        <div class="derivation-step">
+                          <h6>步骤3：能量期望值计算</h6>
+                          <div class="math-display" v-pre>
+                            $$E_{HF} = \langle \Psi_{HF} | \hat{H} | \Psi_{HF} \rangle = \sum_i h_i + \sum_{i&lt;j} (J_{ij} - K_{ij})$$
+                          </div>
+                          <p>其中J_{ij}是库仑积分，K_{ij}是交换积分。</p>
+                        </div>
+
+                        <div class="derivation-step">
+                          <h6>步骤4：变分条件</h6>
+                          <div class="math-display" v-pre>
+                            $$\frac{\delta E_{HF}}{\delta \phi_i^*} = 0 \quad \text{约束条件：} \langle \phi_i | \phi_j \rangle = \delta_{ij}$$
+                          </div>
+                          <p>通过变分原理得到最优轨道。</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="correlation-analysis">
+                  <h4>🔗 电子关联效应的处理</h4>
+                  <div class="correlation-content">
+                    <p><strong>Hartree项与Fock项的物理意义：</strong></p>
+                    
+                    <div class="hartree-term">
+                      <h5>Hartree项 (库仑排斥)</h5>
+                      <div class="math-display">
+                        $$H_{ij} = \int \phi_i^*(\mathbf{r}_1) \phi_j(\mathbf{r}_1) \frac{e^2}{|\mathbf{r}_1 - \mathbf{r}_2|} \phi_i(\mathbf{r}_2) \phi_j^*(\mathbf{r}_2) d\mathbf{r}_1 d\mathbf{r}_2$$
+                      </div>
+                      <p>描述电子间的经典库仑排斥相互作用，对应于电荷密度的直接相互作用。</p>
+                    </div>
+
+                    <div class="fock-term">
+                      <h5>Fock项 (交换相互作用)</h5>
+                      <div class="math-display">
+                        $$K_{ij} = \int \phi_i^*(\mathbf{r}_1) \phi_j(\mathbf{r}_1) \frac{e^2}{|\mathbf{r}_1 - \mathbf{r}_2|} \phi_j(\mathbf{r}_2) \phi_i^*(\mathbf{r}_2) d\mathbf{r}_1 d\mathbf{r}_2$$
+                      </div>
+                      <p>源于波函数的反对称性，是纯量子效应，降低同自旋电子的相互作用能。</p>
+                    </div>
+
+                    <div class="physical-interpretation">
+                      <h5>物理图像</h5>
+                      <div class="interpretation-grid">
+                        <div class="interpretation-item">
+                          <strong>Hartree项：</strong>
+                          <p>每个电子感受到其他电子电荷密度产生的平均静电势</p>
+                        </div>
+                        <div class="interpretation-item">
+                          <strong>Fock项：</strong>
+                          <p>同自旋电子由于Pauli原理而相互"排斥"，形成交换空穴</p>
+                        </div>
+                        <div class="interpretation-item">
+                          <strong>自洽性：</strong>
+                          <p>每个电子的轨道依赖于所有其他电子的轨道，需要迭代求解</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="self-consistent-field">
+                <h4>🔄 自洽场方程</h4>
+                <div class="scf-content">
+                  <p><strong>Hartree-Fock方程的最终形式：</strong></p>
+                  <div class="equation-block">
+                    <div class="math-display">
+                      $$\hat{f} \phi_i = \epsilon_i \phi_i$$
+                    </div>
+                    <p class="equation-note">
+                      其中$\hat{f}$是Fock算符，$\epsilon_i$是轨道能量，$\phi_i$是分子轨道。
+                    </p>
+                  </div>
+
+                  <div class="fock-operator">
+                    <h5>Fock算符的构成</h5>
+                    <div class="math-display">
+                      $$\hat{f} = \hat{h} + \sum_j (\hat{J}_j - \hat{K}_j)$$
+                    </div>
+                    <div class="operator-components">
+                      <div class="component">
+                        <strong>单电子算符：</strong>
+                        <div class="math-display">
+                          $$\hat{h} = -\frac{1}{2}\nabla^2 - \sum_A \frac{Z_A}{|\mathbf{r} - \mathbf{R}_A|}$$
+                        </div>
+                      </div>
+                      <div class="component">
+                        <strong>库仑算符：</strong>
+                        <div class="math-display">
+                          $$\hat{J}_j \phi_i(\mathbf{r}_1) = \left[\int \frac{|\phi_j(\mathbf{r}_2)|^2}{|\mathbf{r}_1 - \mathbf{r}_2|} d\mathbf{r}_2\right] \phi_i(\mathbf{r}_1)$$
+                        </div>
+                      </div>
+                      <div class="component">
+                        <strong>交换算符：</strong>
+                        <div class="math-display">
+                          $$\hat{K}_j \phi_i(\mathbf{r}_1) = \left[\int \frac{\phi_j^*(\mathbf{r}_2) \phi_i(\mathbf{r}_2)}{|\mathbf{r}_1 - \mathbf{r}_2|} d\mathbf{r}_2\right] \phi_j(\mathbf{r}_1)$$
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="scf-procedure">
+                    <h5>自洽场迭代过程</h5>
+                    <div class="procedure-steps">
+                      <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                          <strong>初始猜测：</strong>选择初始轨道$\{\phi_i^{(0)}\}$
+                        </div>
+                      </div>
+                      <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                          <strong>构建Fock矩阵：</strong>计算$F_{ij}^{(n)} = \langle \phi_i^{(n)} | \hat{f}^{(n)} | \phi_j^{(n)} \rangle$
+                        </div>
+                      </div>
+                      <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                          <strong>求解本征方程：</strong>$\mathbf{F}^{(n)} \mathbf{C}^{(n+1)} = \mathbf{S} \mathbf{C}^{(n+1)} \boldsymbol{\epsilon}^{(n+1)}$
+                        </div>
+                      </div>
+                      <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                          <strong>更新轨道：</strong>$\phi_i^{(n+1)} = \sum_\mu C_{\mu i}^{(n+1)} \chi_\mu$
+                        </div>
+                      </div>
+                      <div class="step">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                          <strong>检查收敛：</strong>如果$|E^{(n+1)} - E^{(n)}| < \text{阈值}$，则收敛；否则返回步骤2
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="convergence-criteria">
+                    <h5>收敛判据</h5>
+                    <div class="criteria-list">
+                      <div class="criterion">
+                        <strong>能量收敛：</strong>
+                        <div class="math-display">$$|E^{(n+1)} - E^{(n)}| < 10^{-6} \text{ hartree}$$</div>
+                      </div>
+                      <div class="criterion">
+                        <strong>密度矩阵收敛：</strong>
+                        <div class="math-display">$$\max_{ij} |P_{ij}^{(n+1)} - P_{ij}^{(n)}| < 10^{-8}$$</div>
+                      </div>
+                      <div class="criterion">
+                        <strong>Fock矩阵收敛：</strong>
+                        <div class="math-display">$$\|\mathbf{F}^{(n+1)} - \mathbf{F}^{(n)}\| < 10^{-8}$$</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="electron-density-analysis">
+                <h4>🌊 电子密度与密度矩阵</h4>
+                <div class="density-content">
+                  <div class="equation-block">
+                    <p><strong>电子密度的定义：</strong></p>
+                    <div class="math-display">
+                      $$\varepsilon(k) = \frac{k^2}{2m} + \frac{1}{V} \sum_{k'} \frac{4\pi e^2}{|k - k'|^2} \langle c_{k'\sigma'}^{\dagger} c_{k'\sigma'} \rangle$$
+                    </div>
+                  </div>
+                  
+                  <div class="physics-insight">
+                    <p><strong>物理意义：</strong></p>
+                    <ul>
+                      <li>第一项：动能贡献，描述自由电子的色散关系</li>
+                      <li>第二项：Hartree项，描述电子间的平均库仑相互作用</li>
+                      <li>⟨c†c⟩：电子占据数的期望值，在平均场近似下为常数</li>
+                    </ul>
+                  </div>
+
+                  <div class="hartree-approximation">
+                    <h4>🎯 Hartree近似的具体形式</h4>
+                    <div class="equation-block">
+                      <p><strong>其中第二项可以进一步展开：</strong></p>
+                      <div class="math-display">
+                        $$-\varepsilon_c(k) = \frac{1}{V} \sum_{k'} \frac{4\pi e^2}{|k - k'|^2} \langle c_{k'\sigma'}^{\dagger} c_{k'\sigma'} \rangle$$
+                      </div>
+                      <p class="equation-note">
+                        这里εc(k)表示由于库仑相互作用导致的能量修正，它依赖于所有其他电子的平均分布。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="theory-card variational-principle">
+            <h3>🎯 变分原理</h3>
+            <div class="theory-content">
+              <h4>基本思想：</h4>
               <div class="equation-block">
-                <p>N₀ = N[1 - (T/Tc)^(3/2)]</p>
-                <p>N₀: 基态粒子数</p>
+                <p>E₀ ≤ ⟨Ψ_trial|Ĥ|Ψ_trial⟩/⟨Ψ_trial|Ψ_trial⟩</p>
+                <p>试探波函数给出能量上界</p>
+                <p>最优波函数使能量最小</p>
               </div>
               
-              <h4>凝聚分数：</h4>
+              <h4>Hartree-Fock试探函数：</h4>
+              <div class="calculation-step">
+                <h4>单Slater行列式：</h4>
+                <div class="equation-block">
+                  <p>|Ψ_HF⟩ = |φ₁φ₂...φₙ⟩</p>
+                  <p>= (1/√N!) det[φᵢ(rⱼσⱼ)]</p>
+                  <p>N个最低能量轨道的乘积</p>
+                </div>
+              </div>
+              
+              <h4>变分条件：</h4>
+              <div class="physics-insight">
+                <p><strong>轨道正交性：</strong>⟨φᵢ|φⱼ⟩ = δᵢⱼ</p>
+                <p><strong>能量最小化：</strong>δE/δφᵢ* = 0</p>
+                <p><strong>自洽条件：</strong>轨道由自身产生的场决定</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="theory-card hf-equations">
+            <h3>📐 Hartree-Fock方程</h3>
+            <div class="theory-content">
+              <h4>Fock算符：</h4>
               <div class="equation-block">
-                <p>f₀ = N₀/N = 1 - (T/Tc)^(3/2)</p>
-                <p>T → 0时：f₀ → 1</p>
+                <p>F̂ᵢ = ĥᵢ + ∑ⱼ(Ĵⱼ - K̂ⱼ)</p>
+                <p>ĥᵢ: 单电子哈密顿量</p>
+                <p>Ĵⱼ, K̂ⱼ: Coulomb和交换算符</p>
+              </div>
+              
+              <h4>本征值方程：</h4>
+              <div class="calculation-step">
+                <h4>轨道方程：</h4>
+                <div class="equation-block">
+                  <p>F̂ᵢφᵢ = εᵢφᵢ</p>
+                  <p>εᵢ: 轨道能量</p>
+                  <p>φᵢ: 分子轨道</p>
+                </div>
+              </div>
+              
+              <h4>算符定义：</h4>
+              <div class="physics-insight">
+                <p><strong>Coulomb算符：</strong>Ĵⱼφᵢ(r) = [∫|φⱼ(r')|²/|r-r'|dr']φᵢ(r)</p>
+                <p><strong>交换算符：</strong>K̂ⱼφᵢ(r) = [∫φⱼ*(r')φᵢ(r')/|r-r'|dr']φⱼ(r)</p>
+                <p><strong>非局域性：</strong>交换算符的积分核特性</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="theory-card scf-procedure">
+            <h3>🔄 自洽场程序</h3>
+            <div class="theory-content">
+              <h4>迭代求解：</h4>
+              <div class="equation-block">
+                <p>φᵢ^(n+1) = F̂[φⱼ^(n)]φᵢ^(n+1)</p>
+                <p>Fock算符依赖于轨道本身</p>
+                <p>需要迭代至收敛</p>
+              </div>
+              
+              <h4>收敛判据：</h4>
+              <div class="calculation-step">
+                <h4>能量收敛：</h4>
+                <div class="equation-block">
+                  <p>|E^(n+1) - E^(n)| < 10⁻⁶ Hartree</p>
+                  <p>密度矩阵收敛：||P^(n+1) - P^(n)|| < 10⁻⁸</p>
+                  <p>轨道收敛：max|φᵢ^(n+1) - φᵢ^(n)| < 10⁻⁶</p>
+                </div>
+              </div>
+              
+              <h4>加速技术：</h4>
+              <div class="physics-insight">
+                <p><strong>DIIS方法：</strong>直接反演迭代子空间</p>
+                <p><strong>阻尼技术：</strong>F^(n+1) = αF^(n+1) + (1-α)F^(n)</p>
+                <p><strong>级别移位：</strong>改善收敛性</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2>热力学性质</h2>
-        <div class="concept-grid">
-          <div class="concept-card">
-            <div class="concept-icon">🔥</div>
-            <h3>比热</h3>
-            <p>温度依赖的热容</p>
-            <div class="mathematical-content">
-              <h4>T > Tc (正常相)：</h4>
+      <section class="energy-analysis">
+        <h2>⚡ 能量分析与物理图像</h2>
+        <div class="energy-components">
+          <div class="energy-card kinetic-energy">
+            <h3>🏃 动能贡献</h3>
+            <div class="energy-content">
+              <h4>单电子动能：</h4>
               <div class="equation-block">
-                <p>C ∝ T^(3/2)</p>
+                <p>T = ∑ᵢ⟨φᵢ|-½∇²|φᵢ⟩</p>
+                <p>电子的量子动能</p>
+                <p>轨道局域化降低动能</p>
               </div>
               
-              <h4>T < Tc (凝聚相)：</h4>
-              <div class="equation-block">
-                <p>C ∝ T^(3/2)</p>
-                <p>在Tc处有λ型跃变</p>
+              <h4>物理意义：</h4>
+              <div class="physics-insight">
+                <p><strong>量子压力：</strong>Heisenberg不确定性原理</p>
+                <p><strong>轨道弥散：</strong>降低动能但增加势能</p>
+                <p><strong>平衡点：</strong>总能量最小化</p>
               </div>
             </div>
           </div>
 
-          <div class="concept-card">
-            <div class="concept-icon">⚡</div>
-            <h3>化学势</h3>
-            <p>温度的函数</p>
-            <div class="mathematical-content">
-              <h4>T > Tc：</h4>
+          <div class="energy-card nuclear-attraction">
+            <h3>⚡ 核吸引能</h3>
+            <div class="energy-content">
+              <h4>电子-核相互作用：</h4>
               <div class="equation-block">
-                <p>μ(T) < 0</p>
-                <p>随温度变化</p>
+                <p>V_ne = ∑ᵢ∑_A⟨φᵢ|-Z_A/|r-R_A||φᵢ⟩</p>
+                <p>Z_A: 核电荷数</p>
+                <p>R_A: 核坐标</p>
               </div>
               
-              <h4>T < Tc：</h4>
+              <h4>物理图像：</h4>
+              <div class="physics-insight">
+                <p><strong>库仑吸引：</strong>稳定化电子</p>
+                <p><strong>轨道收缩：</strong>靠近核降低势能</p>
+                <p><strong>屏蔽效应：</strong>内层电子的影响</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="energy-card electron-repulsion">
+            <h3>🔄 电子排斥能</h3>
+            <div class="energy-content">
+              <h4>Coulomb积分：</h4>
               <div class="equation-block">
-                <p>μ = 0</p>
-                <p>钉扎在基态能量</p>
+                <p>J = ½∑ᵢⱼ⟨φᵢφⱼ|1/r₁₂|φᵢφⱼ⟩</p>
+                <p>经典电荷排斥</p>
+                <p>总是正值（不稳定）</p>
+              </div>
+              
+              <h4>交换积分：</h4>
+              <div class="calculation-step">
+                <h4>量子交换效应：</h4>
+                <div class="equation-block">
+                  <p>K = -½∑ᵢⱼ⟨φᵢφⱼ|1/r₁₂|φⱼφᵢ⟩</p>
+                  <p>反对称性的结果</p>
+                  <p>总是负值（稳定化）</p>
+                </div>
+              </div>
+              
+              <h4>净效应：</h4>
+              <div class="physics-insight">
+                <p><strong>交换孔：</strong>同自旋电子相互回避</p>
+                <p><strong>Fermi孔：</strong>降低电子排斥</p>
+                <p><strong>自旋极化：</strong>Hund规则的起源</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="content-section">
-        <h2>玻色-爱因斯坦凝聚的深层理论基础</h2>
-        <div class="bec-theory-grid">
-          <div class="theory-card">
-            <div class="theory-icon">❄️</div>
-            <h3>相变的热力学理论</h3>
-            <div class="theory-content">
-              <h4>临界温度的精确推导：</h4>
+      <section class="molecular-orbitals">
+        <h2>🧬 分子轨道理论</h2>
+        <div class="mo-theory-content">
+          <div class="mo-card lcao-method">
+            <h3>🔗 LCAO方法</h3>
+            <div class="mo-content">
+              <h4>线性组合：</h4>
               <div class="equation-block">
-                <p>N = ∫₀^∞ g(ε)/(e^(β(ε-μ)) - 1) dε</p>
-                <p>T_c时：μ = 0, N = N_excited</p>
-                <p>k_BT_c = (ℏ²/2m)(N/ζ(3/2))^(2/3)</p>
+                <p>φᵢ = ∑_μ c_μᵢ χ_μ</p>
+                <p>χ_μ: 原子轨道基函数</p>
+                <p>c_μᵢ: 展开系数</p>
               </div>
               
-              <h4>序参量理论：</h4>
+              <h4>Roothaan方程：</h4>
+              <div class="calculation-step">
+                <h4>矩阵形式：</h4>
+                <div class="equation-block">
+                  <p>FC = SCε</p>
+                  <p>F: Fock矩阵</p>
+                  <p>S: 重叠矩阵</p>
+                  <p>C: 系数矩阵</p>
+                </div>
+              </div>
+              
+              <h4>基函数选择：</h4>
               <div class="physics-insight">
-                <p><strong>序参量：</strong>ψ₀ = √(N₀/V) (凝聚体波函数)</p>
-                <p><strong>对称性破缺：</strong>U(1)相位对称性自发破缺</p>
-                <p><strong>Goldstone模式：</strong>相位涨落的无能隙激发</p>
-              </div>
-              
-              <h4>Landau-Ginzburg理论：</h4>
-              <div class="equation-block">
-                <p>F = ∫[α|ψ|² + β|ψ|⁴ + γ|∇ψ|²]d³r</p>
-                <p>α ∝ (T - T_c), β > 0</p>
-                <p>相干长度：ξ = √(γ/|α|)</p>
+                <p><strong>最小基组：</strong>每个原子轨道一个函数</p>
+                <p><strong>双ζ基组：</strong>每个轨道两个函数</p>
+                <p><strong>极化基组：</strong>添加高角动量函数</p>
+                <p><strong>弥散基组：</strong>描述远程行为</p>
               </div>
             </div>
           </div>
 
-          <div class="theory-card">
-            <div class="theory-icon">🌊</div>
-            <h3>Gross-Pitaevskii方程</h3>
-            <div class="theory-content">
-              <h4>平均场理论：</h4>
+          <div class="mo-card bonding-analysis">
+            <h3>🤝 成键分析</h3>
+            <div class="mo-content">
+              <h4>轨道相互作用：</h4>
               <div class="equation-block">
-                <p>iℏ∂ψ/∂t = [-ℏ²∇²/2m + V_ext + g|ψ|²]ψ</p>
-                <p>g = 4πℏ²a_s/m (相互作用强度)</p>
-                <p>a_s: s波散射长度</p>
+                <p>E_± = (E_A + E_B ± 2β)/(1 ± S)</p>
+                <p>β: 共振积分</p>
+                <p>S: 重叠积分</p>
               </div>
               
-              <h4>Thomas-Fermi近似：</h4>
+              <h4>成键类型：</h4>
+              <div class="calculation-step">
+                <h4>σ成键：</h4>
+                <div class="equation-block">
+                  <p>轴向重叠：s-s, s-p_z, p_z-p_z</p>
+                  <p>圆柱对称：绕键轴旋转不变</p>
+                  <p>强相互作用：大重叠积分</p>
+                </div>
+                
+                <h4>π成键：</h4>
+                <div class="equation-block">
+                  <p>侧向重叠：p_x-p_x, p_y-p_y</p>
+                  <p>节面存在：通过键轴</p>
+                  <p>弱相互作用：小重叠积分</p>
+                </div>
+              </div>
+              
+              <h4>反键轨道：</h4>
               <div class="physics-insight">
-                <p><strong>化学势：</strong>μ = gn₀ (局域密度近似)</p>
-                <p><strong>密度分布：</strong>n(r) = max[0, (μ-V(r))/g]</p>
-                <p><strong>Thomas-Fermi半径：</strong>R_TF = √(2μ/mω²)</p>
-              </div>
-              
-              <h4>集体激发模式：</h4>
-              <div class="equation-block">
-                <p>Bogoliubov谱：E_k = √(ε_k(ε_k + 2gn₀))</p>
-                <p>ε_k = ℏ²k²/2m</p>
-                <p>声速：c = √(gn₀/m)</p>
+                <p><strong>节面增加：</strong>波函数符号相反</p>
+                <p><strong>能量升高：</strong>不稳定化效应</p>
+                <p><strong>电子填充：</strong>削弱化学键</p>
               </div>
             </div>
           </div>
 
-          <div class="theory-card">
-            <div class="theory-icon">🔬</div>
-            <h3>实验实现与观测</h3>
-            <div class="theory-content">
-              <h4>激光冷却与磁阱：</h4>
-              <div class="physics-insight">
-                <p><strong>多普勒冷却：</strong>T ~ ℏΓ/2k_B ≈ 100 μK</p>
-                <p><strong>偏振梯度冷却：</strong>T ~ ℏ²k²/mk_B ≈ 1 μK</p>
-                <p><strong>蒸发冷却：</strong>选择性移除高能原子</p>
+          <div class="mo-card population-analysis">
+            <h3>📊 布居分析</h3>
+            <div class="mo-content">
+              <h4>Mulliken分析：</h4>
+              <div class="equation-block">
+                <p>q_A = ∑_μ∈A ∑_ν P_μν S_μν</p>
+                <p>P_μν: 密度矩阵元</p>
+                <p>原子电荷的定义</p>
               </div>
               
-              <h4>典型实验参数：</h4>
+              <h4>键级分析：</h4>
+              <div class="calculation-step">
+                <h4>Wiberg键级：</h4>
+                <div class="equation-block">
+                  <p>B_AB = ∑_μ∈A ∑_ν∈B (P_μν S_μν)²</p>
+                  <p>描述化学键强度</p>
+                  <p>单键≈1, 双键≈2, 三键≈3</p>
+                </div>
+              </div>
+              
+              <h4>自然轨道：</h4>
+              <div class="physics-insight">
+                <p><strong>自然布居分析：</strong>NPA方法</p>
+                <p><strong>自然键轨道：</strong>NBO分析</p>
+                <p><strong>电荷转移：</strong>供体-受体相互作用</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="applications-section">
+        <h2>🎯 应用实例</h2>
+        <div class="applications-grid">
+          <div class="application-card molecules">
+            <div class="application-icon">🧪</div>
+            <h3>分子电子结构</h3>
+            <div class="application-content">
+              <h4>小分子计算：</h4>
+              <div class="physics-insight">
+                <p><strong>H₂分子：</strong>最简单的化学键</p>
+                <p><strong>H₂O分子：</strong>弯曲几何的预测</p>
+                <p><strong>NH₃分子：</strong>锥形结构与反演</p>
+                <p><strong>CH₄分子：</strong>四面体对称性</p>
+              </div>
+              
+              <h4>计算结果：</h4>
               <div class="data-table">
                 <table>
+                  <thead>
+                    <tr><th>分子</th><th>键长(Å)</th><th>键角(°)</th><th>偶极矩(D)</th></tr>
+                  </thead>
                   <tbody>
-                  <tr><th>原子</th><th>T_c (nK)</th><th>N₀</th><th>密度 (cm⁻³)</th></tr>
-                  <tr><td>⁸⁷Rb</td><td>170</td><td>10⁶</td><td>10¹⁵</td></tr>
-                  <tr><td>²³Na</td><td>2000</td><td>10⁷</td><td>10¹⁵</td></tr>
-                  <tr><td>⁷Li</td><td>400</td><td>10⁶</td><td>10¹⁴</td></tr>
-                  <tr><td>¹H</td><td>50</td><td>10⁹</td><td>10¹⁵</td></tr>
+                    <tr><td>H₂</td><td>0.74</td><td>-</td><td>0.0</td></tr>
+                    <tr><td>H₂O</td><td>0.96</td><td>104.5</td><td>1.85</td></tr>
+                    <tr><td>NH₃</td><td>1.01</td><td>106.7</td><td>1.47</td></tr>
+                    <tr><td>CH₄</td><td>1.09</td><td>109.5</td><td>0.0</td></tr>
                   </tbody>
                 </table>
               </div>
-              
-              <h4>观测技术：</h4>
+            </div>
+          </div>
+
+          <div class="application-card solids">
+            <div class="application-icon">💎</div>
+            <h3>固体能带结构</h3>
+            <div class="application-content">
+              <h4>Bloch定理：</h4>
               <div class="physics-insight">
-                <p><strong>吸收成像：</strong>原位密度分布测量</p>
-                <p><strong>飞行时间：</strong>动量分布测量</p>
-                <p><strong>相位对比：</strong>相干性测量</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="content-section">
-        <h2>现代发展与前沿应用</h2>
-        <div class="modern-bec-grid">
-          <div class="modern-category">
-            <h3>🔬 理论发展</h3>
-            <div class="modern-items">
-              <div class="modern-item">
-                <h4>有限温度理论</h4>
-                <div class="modern-content">
-                  <p><strong>Hartree-Fock-Bogoliubov理论：</strong></p>
-                  <div class="equation-block">
-                    <p>包含量子涨落和热涨落</p>
-                    <p>准粒子激发的自洽处理</p>
-                  </div>
-                  <div class="physics-insight">
-                    <p><strong>量子耗散：</strong>Beliaev阻尼</p>
-                    <p><strong>Landau阻尼：</strong>准粒子散射</p>
-                    <p><strong>相变动力学：</strong>Kibble-Zurek机制</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modern-item">
-                <h4>强相互作用BEC</h4>
-                <div class="modern-content">
-                  <p><strong>Tonks-Girardeau气体：</strong></p>
-                  <div class="equation-block">
-                    <p>一维强排斥玻色气体</p>
-                    <p>费米化：类似自由费米子</p>
-                  </div>
-                  <div class="physics-insight">
-                    <p><strong>量子相变：</strong>超流-Mott绝缘体</p>
-                    <p><strong>杨-高斯定理：</strong>一维精确解</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modern-item">
-                <h4>非平衡BEC</h4>
-                <div class="modern-content">
-                  <p><strong>驱动-耗散系统：</strong></p>
-                  <div class="physics-insight">
-                    <p><strong>激子极化子：</strong>半导体微腔</p>
-                    <p><strong>磁振子BEC：</strong>反铁磁体</p>
-                    <p><strong>光子BEC：</strong>染料微腔</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modern-category">
-            <h3>🧪 实验前沿</h3>
-            <div class="modern-items">
-              <div class="modern-item">
-                <h4>量子气体显微镜</h4>
-                <div class="modern-content">
-                  <p><strong>单原子分辨成像：</strong></p>
-                  <div class="physics-insight">
-                    <p><strong>空间分辨率：</strong>~400 nm</p>
-                    <p><strong>检测效率：</strong>>99%</p>
-                    <p><strong>实时观测：</strong>量子相变过程</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modern-item">
-                <h4>人工规范场</h4>
-                <div class="modern-content">
-                  <p><strong>合成磁场：</strong></p>
-                  <div class="equation-block">
-                    <p>激光诱导的有效磁场</p>
-                    <p>旋转BEC中的涡旋晶格</p>
-                  </div>
-                  <div class="physics-insight">
-                    <p><strong>拓扑态：</strong>Laughlin态的实现</p>
-                    <p><strong>自旋-轨道耦合：</strong>人工维度</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="modern-item">
-                <h4>量子模拟</h4>
-                <div class="modern-content">
-                  <p><strong>可编程量子模拟器：</strong></p>
-                  <div class="physics-insight">
-                    <p><strong>Hubbard模型：</strong>光晶格中的BEC</p>
-                    <p><strong>自旋模型：</strong>磁性相互作用</p>
-                    <p><strong>规范理论：</strong>格点规范场</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="modern-category">
-            <h3>🚀 应用前景</h3>
-            <div class="future-applications">
-              <div class="application-item precision">
-                <h4>精密测量</h4>
-                <ul>
-                  <li>原子干涉仪：重力波探测</li>
-                  <li>原子钟：时间标准</li>
-                  <li>磁力计：地质勘探</li>
-                  <li>陀螺仪：惯性导航</li>
-                </ul>
+                <p><strong>周期性：</strong>ψ_k(r+R) = e^(ik·R)ψ_k(r)</p>
+                <p><strong>能带形成：</strong>原子轨道的线性组合</p>
+                <p><strong>布里渊区：</strong>k空间的第一布里渊区</p>
+                <p><strong>费米面：</strong>金属与绝缘体的区别</p>
               </div>
               
-              <div class="application-item quantum">
-                <h4>量子技术</h4>
-                <ul>
-                  <li>量子计算：拓扑量子比特</li>
-                  <li>量子通信：纠缠光源</li>
-                  <li>量子传感：超越标准量子极限</li>
-                  <li>量子存储：原子存储器</li>
-                </ul>
+              <h4>典型材料：</h4>
+              <div class="equation-block">
+                <p>硅：间接带隙半导体 (1.1 eV)</p>
+                <p>锗：间接带隙半导体 (0.7 eV)</p>
+                <p>GaAs：直接带隙半导体 (1.4 eV)</p>
+                <p>铜：金属，部分填充d带</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="application-card surfaces">
+            <div class="application-icon">🏔️</div>
+            <h3>表面与界面</h3>
+            <div class="application-content">
+              <h4>表面重构：</h4>
+              <div class="physics-insight">
+                <p><strong>悬挂键：</strong>表面原子的未饱和键</p>
+                <p><strong>重构驱动力：</strong>降低表面能</p>
+                <p><strong>Si(100)表面：</strong>二聚体形成</p>
+                <p><strong>GaAs(110)表面：</strong>弛豫与重构</p>
               </div>
               
-              <div class="application-item materials">
-                <h4>新材料</h4>
-                <ul>
-                  <li>超导材料：高温超导机理</li>
-                  <li>拓扑材料：拓扑绝缘体</li>
-                  <li>光学材料：非线性光学</li>
-                  <li>磁性材料：量子磁体</li>
-                </ul>
+              <h4>吸附现象：</h4>
+              <div class="equation-block">
+                <p>物理吸附：van der Waals相互作用</p>
+                <p>化学吸附：共价键形成</p>
+                <p>吸附能：0.1-5 eV范围</p>
+                <p>覆盖度依赖：相互作用效应</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="content-section">
-        <div class="experimental-section">
-          <div class="physics-insight">
-            <h3>🧪 冷原子气体BEC</h3>
-            <p>1995年首次实现的玻色-爱因斯坦凝聚：</p>
-            <ul>
-              <li><strong>激光冷却：</strong>将原子冷却到μK量级</li>
-              <li><strong>磁阱束缚：</strong>用磁场约束原子</li>
-              <li><strong>蒸发冷却：</strong>进一步降低温度</li>
-              <li><strong>成像观测：</strong>通过吸收成像观察凝聚体</li>
-            </ul>
+
+      <section class="limitations-improvements">
+        <h2>⚠️ 局限性与改进方法</h2>
+        <div class="limitations-grid">
+          <div class="limitation-card correlation-energy">
+            <h3>🔍 电子关联缺失</h3>
+            <div class="limitation-content">
+              <h4>HF方法的不足：</h4>
+              <div class="physics-insight">
+                <p><strong>平均场近似：</strong>忽略瞬时关联</p>
+                <p><strong>单行列式：</strong>无法描述多重激发</p>
+                <p><strong>关联能缺失：</strong>~1-10%的总能量</p>
+                <p><strong>化学精度：</strong>无法达到1 kcal/mol</p>
+              </div>
+              
+              <h4>改进方法：</h4>
+              <div class="equation-block">
+                <p>组态相互作用：CI方法</p>
+                <p>耦合簇理论：CC方法</p>
+                <p>多体微扰理论：MP2, MP4</p>
+                <p>密度泛函理论：DFT方法</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="limitation-card self-interaction">
+            <h3>⚡ 自相互作用误差</h3>
+            <div class="limitation-content">
+              <h4>问题描述：</h4>
+              <div class="physics-insight">
+                <p><strong>Coulomb自相互作用：</strong>电子与自身排斥</p>
+                <p><strong>交换补偿：</strong>部分抵消但不完全</p>
+                <p><strong>单电子系统：</strong>H原子能量误差</p>
+                <p><strong>离子化能：</strong>系统性低估</p>
+              </div>
+              
+              <h4>Koopmans定理：</h4>
+              <div class="equation-block">
+                <p>IP ≈ -ε_HOMO (近似关系)</p>
+                <p>忽略轨道弛豫效应</p>
+                <p>自相互作用误差的体现</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="limitation-card dispersion">
+            <h3>🌊 色散相互作用</h3>
+            <div class="limitation-content">
+              <h4>van der Waals力：</h4>
+              <div class="physics-insight">
+                <p><strong>瞬时偶极：</strong>电子关联的结果</p>
+                <p><strong>长程吸引：</strong>R⁻⁶依赖性</p>
+                <p><strong>HF缺失：</strong>无法描述色散</p>
+                <p><strong>分子间相互作用：</strong>严重低估</p>
+              </div>
+              
+              <h4>修正方案：</h4>
+              <div class="equation-block">
+                <p>DFT-D方法：经验色散修正</p>
+                <p>vdW-DF泛函：非局域关联</p>
+                <p>MP2方法：二阶微扰包含色散</p>
+                <p>SAPT方法：对称性适配微扰</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="applications">
-        <h2>物理应用和现象</h2>
-        <div class="example-box">
-          <h3>例1：液氦的超流性</h3>
-          <p>⁴He的玻色-爱因斯坦凝聚：</p>
-          <div class="equation-block">
-            <p>Tc ≈ 2.17 K (λ点)</p>
-            <p>超流现象：零粘滞流动</p>
-            <p>量子涡旋的形成</p>
+      <section class="modern-developments">
+        <h2>🚀 现代发展</h2>
+        <div class="modern-grid">
+          <div class="modern-card dft-connection">
+            <h3>🔗 与DFT的联系</h3>
+            <div class="modern-content">
+              <h4>Kohn-Sham方程：</h4>
+              <div class="physics-insight">
+                <p><strong>形式相似：</strong>与HF方程类似结构</p>
+                <p><strong>交换关联：</strong>V_xc替代交换算符</p>
+                <p><strong>密度泛函：</strong>基于电子密度</p>
+                <p><strong>计算效率：</strong>O(N³)标度</p>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <div class="example-box">
-          <h3>例2：原子气体BEC</h3>
-          <p>稀薄原子气体：</p>
-          <div class="equation-block">
-            <p>Tc ~ 100 nK - 1 μK</p>
-            <p>纯净的量子相变</p>
-            <p>可控的相互作用强度</p>
-          </div>
-        </div>
 
-        <div class="example-box">
-          <h3>例3：激子极化子凝聚</h3>
-          <p>固体中的玻色凝聚：</p>
-          <div class="equation-block">
-            <p>半导体微腔中的极化子</p>
-            <p>室温下的凝聚现象</p>
-            <p>相干光发射</p>
+          <div class="modern-card hybrid-functionals">
+            <h3>🎭 杂化泛函</h3>
+            <div class="modern-content">
+              <h4>HF交换的引入：</h4>
+              <div class="physics-insight">
+                <p><strong>B3LYP：</strong>20% HF交换</p>
+                <p><strong>PBE0：</strong>25% HF交换</p>
+                <p><strong>HSE06：</strong>短程HF交换</p>
+                <p><strong>性能提升：</strong>更好的能隙预测</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
 
-      <section class="content-section">
-        <h2>量子相变特征</h2>
-        <div class="phase-transition">
-          <div class="transition-item">
-            <h3>🌡️ 连续相变</h3>
-            <p>BEC转变是二级相变，序参量连续变化</p>
-          </div>
-          <div class="transition-item">
-            <h3>🎯 序参量</h3>
-            <p>凝聚体波函数Ψ₀ = √N₀ e^(iφ)</p>
-          </div>
-          <div class="transition-item">
-            <h3>🔄 对称性破缺</h3>
-            <p>U(1)相位对称性的自发破缺</p>
-          </div>
-          <div class="transition-item">
-            <h3>🌊 长程相干</h3>
-            <p>宏观量子相干性的建立</p>
+          <div class="modern-card machine-learning">
+            <h3>🤖 机器学习</h3>
+            <div class="modern-content">
+              <h4>新兴应用：</h4>
+              <div class="physics-insight">
+                <p><strong>神经网络势：</strong>加速分子动力学</p>
+                <p><strong>轨道预测：</strong>机器学习初猜</p>
+                <p><strong>基函数优化：</strong>自适应基组</p>
+                <p><strong>性质预测：</strong>跳过SCF计算</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="summary">
-        <h2>本节要点</h2>
+        <h2>📝 本节要点</h2>
         <div class="key-points">
           <div class="point-item">
             <span class="point-number">1</span>
-            <p>玻色-爱因斯坦分布允许多粒子占据同态</p>
+            <p><strong>平均场近似：</strong>将多体问题转化为有效单体问题</p>
           </div>
           <div class="point-item">
             <span class="point-number">2</span>
-            <p>存在临界温度Tc，低于此温度发生凝聚</p>
+            <p><strong>变分原理：</strong>通过能量最小化确定最优轨道</p>
           </div>
           <div class="point-item">
             <span class="point-number">3</span>
-            <p>凝聚体具有宏观量子相干性</p>
+            <p><strong>自洽场：</strong>轨道由自身产生的平均场决定</p>
           </div>
           <div class="point-item">
             <span class="point-number">4</span>
-            <p>BEC是量子统计效应的宏观体现</p>
+            <p><strong>交换效应：</strong>Pauli原理导致的量子效应</p>
           </div>
           <div class="point-item">
             <span class="point-number">5</span>
-            <p>在多个物理系统中都有实现</p>
+            <p><strong>现代发展：</strong>DFT、杂化泛函和机器学习的结合</p>
           </div>
         </div>
       </section>
@@ -462,7 +849,7 @@ export default {
 
 <style scoped>
 .chapter-content {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -474,349 +861,648 @@ export default {
   text-align: center;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
-  border-bottom: 3px solid #6f42c1;
+  border-bottom: 3px solid #00b894;
 }
 
 .chapter-title {
-  font-size: 2.5rem;
-  color: #2c3e50;
+  font-size: 2.8rem;
+  color: #2d3436;
   margin-bottom: 1rem;
   font-weight: 700;
+  background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .chapter-meta {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .chapter-tag {
-  background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+  background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
 }
 
 .reading-time {
-  color: #666;
+  color: #636e72;
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   background: #f8f9fa;
-  border-radius: 20px;
+  border-radius: 25px;
+  border: 2px solid #e9ecef;
 }
 
 .introduction {
-  background: linear-gradient(135deg, #e2e3e5 0%, #d6d8db 100%);
-  padding: 2rem;
-  border-radius: 15px;
-  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #f0fff4 0%, #e8f8f5 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
+  margin-bottom: 3rem;
+  border: 2px solid #00b894;
+  box-shadow: 0 10px 30px rgba(0, 184, 148, 0.1);
+}
+
+.introduction h2 {
+  color: #00b894;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .lead-text {
   font-size: 1.2rem;
-  color: #495057;
+  color: #2d3436;
   font-weight: 500;
   margin: 0;
+  text-align: justify;
 }
 
-.content-section {
-  margin-bottom: 3rem;
+.many-body-problem-section {
+  margin-bottom: 4rem;
 }
 
-.content-section h2 {
-  color: #2c3e50;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e9ecef;
-}
-
-.concept-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.concept-card {
-  background: white;
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.concept-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.bec-section {
-  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-  padding: 2rem;
-  border-radius: 15px;
-  margin: 2rem 0;
-}
-
-.experimental-section {
-  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-  padding: 2rem;
-  border-radius: 15px;
-  margin: 2rem 0;
-}
-
-.concept-icon {
+.many-body-problem-section h2 {
+  color: #2d3436;
   font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #e17055;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.problem-card {
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.problem-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.complexity {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+  border-color: #e17055;
+}
+
+.complexity:hover {
+  border-color: #d63031;
+}
+
+.correlation {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2ff 100%);
+  border-color: #0984e3;
+}
+
+.correlation:hover {
+  border-color: #0056b3;
+}
+
+.antisymmetry {
+  background: linear-gradient(135deg, #f8fff8 0%, #e8ffe8 100%);
+  border-color: #00b894;
+}
+
+.antisymmetry:hover {
+  border-color: #00a085;
+}
+
+.problem-icon {
+  font-size: 3rem;
+  text-align: center;
   margin-bottom: 1rem;
 }
 
-.concept-card h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+.problem-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
 }
 
-.mathematical-content {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1rem;
+.complexity h3 {
+  color: #d63031;
 }
 
-.mathematical-content h4 {
-  color: #495057;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
+.correlation h3 {
+  color: #0984e3;
+}
+
+.antisymmetry h3 {
+  color: #00b894;
+}
+
+.problem-content h4 {
+  color: #2d3436;
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .equation-block {
   background: white;
-  padding: 1rem;
-  border-radius: 6px;
-  border-left: 4px solid #6f42c1;
-  margin: 0.5rem 0;
+  padding: 1.2rem;
+  border-radius: 10px;
+  border-left: 4px solid #00b894;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .equation-block p {
-  margin: 0.3rem 0;
+  margin: 0.4rem 0;
   font-family: 'Courier New', monospace;
   font-size: 0.95rem;
+  color: #2d3436;
 }
 
 .physics-insight {
-  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-  padding: 2rem;
-  border-radius: 15px;
+  background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1rem 0;
+  border: 2px solid #28a745;
+}
+
+.physics-insight p {
+  margin: 0.8rem 0;
+  color: #155724;
+}
+
+.hartree-fock-theory {
+  margin-bottom: 4rem;
+}
+
+.hartree-fock-theory h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #6c5ce7;
+}
+
+.hf-theory-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
   margin: 2rem 0;
 }
 
-.physics-insight h3 {
-  color: #155724;
+.theory-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.theory-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.variational-principle {
+  border-left: 5px solid #6c5ce7;
+}
+
+.hf-equations {
+  border-left: 5px solid #fd79a8;
+}
+
+.scf-procedure {
+  border-left: 5px solid #fdcb6e;
+}
+
+.theory-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+  font-weight: 600;
+}
+
+.theory-content h4 {
+  color: #636e72;
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.calculation-step {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.calculation-step h4 {
+  color: #495057;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.energy-analysis {
+  margin-bottom: 4rem;
+}
+
+.energy-analysis h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #fdcb6e;
+}
+
+.energy-components {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.energy-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.energy-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.kinetic-energy {
+  border-left: 5px solid #e17055;
+}
+
+.nuclear-attraction {
+  border-left: 5px solid #00b894;
+}
+
+.electron-repulsion {
+  border-left: 5px solid #6c5ce7;
+}
+
+.energy-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+  font-weight: 600;
+}
+
+.energy-content h4 {
+  color: #636e72;
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.molecular-orbitals {
+  margin-bottom: 4rem;
+}
+
+.molecular-orbitals h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #a29bfe;
+}
+
+.mo-theory-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.mo-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.mo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.lcao-method {
+  border-left: 5px solid #6c5ce7;
+}
+
+.bonding-analysis {
+  border-left: 5px solid #fd79a8;
+}
+
+.population-analysis {
+  border-left: 5px solid #00b894;
+}
+
+.mo-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+  font-weight: 600;
+}
+
+.mo-content h4 {
+  color: #636e72;
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.applications-section {
+  margin-bottom: 4rem;
+}
+
+.applications-section h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #fd79a8;
+}
+
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.application-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.molecules {
+  border-left: 5px solid #e17055;
+}
+
+.solids {
+  border-left: 5px solid #00b894;
+}
+
+.surfaces {
+  border-left: 5px solid #6c5ce7;
+}
+
+.application-icon {
+  font-size: 3rem;
+  text-align: center;
   margin-bottom: 1rem;
 }
 
-.physics-insight ul {
-  list-style: none;
-  padding: 0;
-}
-
-.physics-insight li {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.physics-insight li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: #155724;
-  font-weight: bold;
-}
-
-.phase-transition {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-
-.transition-item {
-  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-  padding: 1.5rem;
-  border-radius: 10px;
+.application-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #2d3436;
+  font-weight: 600;
   text-align: center;
 }
 
-.transition-item h3 {
-  color: #7b1fa2;
-  margin-bottom: 1rem;
+.application-content h4 {
+  color: #636e72;
+  margin: 1.5rem 0 0.8rem 0;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
-/* 理论基础网格样式 */
-.theoretical-basis-grid {
+.data-table {
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.data-table th {
+  background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+  color: white;
+  font-weight: 600;
+}
+
+.data-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.data-table tr:hover {
+  background: #e8f5e8;
+}
+
+.limitations-improvements {
+  margin-bottom: 4rem;
+}
+
+.limitations-improvements h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #e17055;
+}
+
+.limitations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 25px;
-  margin-top: 25px;
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
-.basis-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 15px;
-  padding: 25px;
-  color: white;
-  box-shadow: 0 10px 35px rgba(102, 126, 234, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.limitation-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
 }
 
-.basis-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 45px rgba(102, 126, 234, 0.4);
-}
-
-.basis-icon {
-  font-size: 2.8em;
-  margin-bottom: 18px;
-  display: block;
-}
-
-.basis-content h4 {
-  margin: 0 0 15px 0;
-  font-size: 1.4em;
-  font-weight: 600;
-}
-
-.basis-content p {
-  margin: 0 0 12px 0;
-  line-height: 1.7;
-  opacity: 0.95;
-}
-
-.basis-content .equation {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 12px;
-  border-radius: 8px;
-  margin: 10px 0;
-  font-family: 'Courier New', monospace;
-  font-size: 0.95em;
-}
-
-/* 现代发展网格样式 */
-.modern-developments-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.development-category {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  border-radius: 12px;
-  padding: 20px;
-  color: white;
-  box-shadow: 0 8px 30px rgba(240, 147, 251, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.development-category:hover {
+.limitation-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(240, 147, 251, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.development-category h4 {
-  margin: 0 0 15px 0;
-  font-size: 1.3em;
+.correlation-energy {
+  border-left: 5px solid #e17055;
+}
+
+.self-interaction {
+  border-left: 5px solid #fdcb6e;
+}
+
+.dispersion {
+  border-left: 5px solid #6c5ce7;
+}
+
+.limitation-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: #2d3436;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
-.development-item {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 12px;
-  margin: 10px 0;
+.limitation-content h4 {
+  color: #636e72;
+  margin: 1.5rem 0 0.8rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.development-item h5 {
-  margin: 0 0 8px 0;
-  font-size: 1.1em;
-  font-weight: 500;
+.modern-developments {
+  margin-bottom: 4rem;
 }
 
-.development-item p {
-  margin: 0;
-  line-height: 1.6;
-  opacity: 0.9;
-  font-size: 0.95em;
+.modern-developments h2 {
+  color: #2d3436;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #a29bfe;
 }
 
-.applications {
-  margin: 3rem 0;
+.modern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
-.example-box {
-  background: #f0f8ff;
-  border: 1px solid #007bff;
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
+.modern-card {
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f4fd 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid #a29bfe;
+  transition: all 0.3s ease;
 }
 
-.example-box h3 {
-  color: #0056b3;
-  margin-bottom: 1rem;
+.modern-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(162, 155, 254, 0.2);
+}
+
+.modern-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: #6c5ce7;
+  font-weight: 600;
+}
+
+.modern-content h4 {
+  color: #2d3436;
+  margin: 1rem 0 0.8rem 0;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .summary {
-  background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%);
+  background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
   color: white;
-  padding: 2rem;
-  border-radius: 15px;
+  padding: 2.5rem;
+  border-radius: 20px;
   margin-top: 3rem;
+  box-shadow: 0 15px 35px rgba(0, 184, 148, 0.3);
 }
 
 .summary h2 {
   color: white;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 1rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .key-points {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .point-item {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
 }
 
 .point-number {
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   flex-shrink: 0;
+  font-size: 1.1rem;
 }
 
 .point-item p {
   margin: 0;
   flex: 1;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {
@@ -825,20 +1511,31 @@ export default {
   }
   
   .chapter-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   
-  .concept-grid {
+  .problem-grid,
+  .hf-theory-content,
+  .energy-components,
+  .mo-theory-content,
+  .applications-grid,
+  .limitations-grid,
+  .modern-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .phase-transition {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
   
   .chapter-meta {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .point-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .data-table {
+    font-size: 0.8rem;
   }
 }
 </style>

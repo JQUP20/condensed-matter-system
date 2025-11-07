@@ -141,6 +141,485 @@
       </section>
 
       <section class="content-section">
+        <h2>微扰理论计算详解</h2>
+        <div class="perturbation-theory-section">
+          <div class="theory-introduction">
+            <h3>🔬 微扰理论框架</h3>
+            <p class="lead-text">
+              在处理相互作用费米气体时，我们通常将哈密顿量分解为非相互作用部分和相互作用部分，
+              然后用微扰理论系统地计算各阶修正。这种方法为理解多体系统提供了强有力的工具。
+            </p>
+          </div>
+
+          <div class="fermi-sea-detailed">
+            <h3>🌊 费米海基态的详细描述</h3>
+            <div class="concept-grid">
+              <div class="concept-card">
+                <div class="concept-icon">⚛️</div>
+                <h4>基态波函数构造</h4>
+                <div class="mathematical-content">
+                  <h5>Slater行列式表示：</h5>
+                  <div class="equation-block">
+                    <p>|Ψ₀⟩ = |k₁↑, k₁↓, k₂↑, k₂↓, ..., kₙ↑, kₙ↓⟩</p>
+                    <p>= ∏ᵢ₌₁ᴺ ĉ†ₖᵢ↑ĉ†ₖᵢ↓|0⟩</p>
+                  </div>
+                  
+                  <h5>费米海条件：</h5>
+                  <div class="equation-block">
+                    <p>|kᵢ| ≤ kF, ∀i = 1,2,...,N</p>
+                    <p>kF = (3π²n)^(1/3)</p>
+                    <p>n = N/V (电子密度)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div class="concept-icon">📊</div>
+                <h4>占据数分布</h4>
+                <div class="mathematical-content">
+                  <h5>T=0时的分布函数：</h5>
+                  <div class="equation-block">
+                    <p>f(k) = θ(kF - |k|)</p>
+                    <p>= 1, |k| ≤ kF</p>
+                    <p>= 0, |k| > kF</p>
+                  </div>
+                  
+                  <h5>期望占据数：</h5>
+                  <div class="equation-block">
+                    <p>⟨n̂ₖσ⟩ = ⟨Ψ₀|ĉ†ₖσĉₖσ|Ψ₀⟩ = f(k)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="density-calculation">
+            <h3>🔢 基态电子数密度计算</h3>
+            <div class="calculation-steps">
+              <div class="step-card">
+                <h4>步骤1: 动量空间积分</h4>
+                <div class="mathematical-content">
+                  <div class="equation-block">
+                    <p>N = 2∑ₖ f(k) = 2∑ₖ θ(kF - |k|)</p>
+                    <p>= 2 × (V/(2π)³) ∫|k|≤kF d³k</p>
+                  </div>
+                  <div class="physics-insight">
+                    <p><strong>说明：</strong>因子2来自自旋简并，V/(2π)³是k空间的态密度</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-card">
+                <h4>步骤2: 球坐标积分</h4>
+                <div class="mathematical-content">
+                  <div class="equation-block">
+                    <p>N = 2 × (V/(2π)³) × (4π/3)kF³</p>
+                    <p>= (V/3π²)kF³</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-card">
+                <h4>步骤3: 电子密度</h4>
+                <div class="mathematical-content">
+                  <div class="equation-block">
+                    <p>n = N/V = kF³/(3π²)</p>
+                    <p>⟹ kF = (3π²n)^(1/3)</p>
+                  </div>
+                  <div class="physics-insight">
+                    <p><strong>物理意义：</strong>费米动量完全由电子密度决定</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="energy-calculation">
+            <h3>⚡ 基态能量计算</h3>
+            <div class="energy-steps">
+              <div class="step-card">
+                <h4>动能贡献</h4>
+                <div class="mathematical-content">
+                  <h5>基态动能：</h5>
+                  <div class="equation-block">
+                    <p>E₀ = ⟨Ψ₀|Ĥ₀|Ψ₀⟩ = ∑ₖσ εₖ⟨n̂ₖσ⟩</p>
+                    <p>= 2∑ₖ εₖf(k) = 2∑|k|≤kF (ℏ²k²)/(2m)</p>
+                  </div>
+                  
+                  <h5>积分计算：</h5>
+                  <div class="equation-block">
+                    <p>E₀ = 2 × (V/(2π)³) ∫₀^kF (ℏ²k²)/(2m) × 4πk²dk</p>
+                    <p>= (V/π²) × (ℏ²/2m) ∫₀^kF k⁴dk</p>
+                    <p>= (V/π²) × (ℏ²/2m) × (kF⁵/5)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-card">
+                <h4>最终结果</h4>
+                <div class="mathematical-content">
+                  <div class="equation-block">
+                    <p>E₀ = (ℏ²kF⁵V)/(10π²m)</p>
+                    <p>= (ℏ²kF²)/(2m) × (kF³V)/(5π²)</p>
+                    <p>= εF × (3N/5)</p>
+                    <p>= (3/5)NεF</p>
+                  </div>
+                  <div class="physics-insight">
+                    <p><strong>平均动能：</strong>⟨T⟩ = E₀/N = (3/5)εF</p>
+                    <p><strong>比较：</strong>经典气体⟨T⟩ = (3/2)kBT，量子简并显著不同</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="perturbation-corrections">
+            <h3>🔄 微扰修正计算</h3>
+            <div class="correction-framework">
+              <div class="concept-card">
+                <div class="concept-icon">🎯</div>
+                <h4>微扰哈密顿量分解</h4>
+                <div class="mathematical-content">
+                  <h5>完整哈密顿量：</h5>
+                  <div class="equation-block">
+                    <p>Ĥ = Ĥ₀ + V̂</p>
+                    <p>Ĥ₀ = ∑ₖσ εₖĉ†ₖσĉₖσ (动能项)</p>
+                    <p>V̂ = (1/2V)∑ₖₖ'q vq ĉ†ₖ₊q↑ĉ†ₖ'₋q↓ĉₖ'↓ĉₖ↑</p>
+                  </div>
+                  
+                  <h5>库仑相互作用：</h5>
+                  <div class="equation-block">
+                    <p>vq = 4πe²/(ε₀q²) (裸库仑势)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div class="concept-icon">📈</div>
+                <h4>一阶微扰修正</h4>
+                <div class="mathematical-content">
+                  <h5>Hartree能量：</h5>
+                  <div class="equation-block">
+                    <p>E⁽¹⁾ = ⟨Ψ₀|V̂|Ψ₀⟩</p>
+                    <p>= (1/2V)∑ₖₖ'q vq⟨ĉ†ₖ₊q↑ĉ†ₖ'₋q↓ĉₖ'↓ĉₖ↑⟩</p>
+                  </div>
+                  
+                  <h5>Wick定理应用：</h5>
+                  <div class="equation-block">
+                    <p>⟨ĉ†ₖ₊q↑ĉ†ₖ'₋q↓ĉₖ'↓ĉₖ↑⟩ = δq,0f(k)f(k') - δₖ,ₖ'f(k)f(k+q)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hartree-fock-terms">
+              <h4>Hartree项和Fock项分离</h4>
+              <div class="term-analysis">
+                <div class="term-card">
+                  <h5>🔵 Hartree项 (直接项)</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>EH = (1/2V)∑ₖₖ' v₀f(k)f(k')</p>
+                      <p>= (1/2V)v₀N²</p>
+                      <p>= (1/2V) × (4πe²/ε₀) × (1/0²) → 发散!</p>
+                    </div>
+                    <div class="physics-insight">
+                      <p><strong>物理意义：</strong>所有电子间的直接库仑排斥</p>
+                      <p><strong>发散处理：</strong>需要背景正电荷中和</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="term-card">
+                  <h5>🔴 Fock项 (交换项)</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>EF = -(1/2V)∑ₖₖ'q vqf(k)f(k+q)δₖ,ₖ'</p>
+                      <p>= -(1/2V)∑ₖq vqf(k)f(k+q)</p>
+                    </div>
+                    <div class="physics-insight">
+                      <p><strong>物理意义：</strong>泡利不相容原理导致的交换能</p>
+                      <p><strong>符号：</strong>负号表示降低总能量</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="exchange-energy-calculation">
+              <h4>交换能详细计算</h4>
+              <div class="calculation-steps">
+                <div class="step-card">
+                  <h5>步骤1: 动量积分设置</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>EF = -(1/2V)∑ₖq (4πe²)/(ε₀q²) f(k)f(k+q)</p>
+                      <p>= -(2e²)/(ε₀V) ∑ₖq (π/q²) f(k)f(k+q)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <h5>步骤2: 连续极限</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>EF = -(2e²)/(ε₀) × (V/(2π)³)² ∫∫ (π/q²) f(k)f(k+q)d³kd³q</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <h5>步骤3: 球坐标积分</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>积分区域：|k| ≤ kF, |k+q| ≤ kF</p>
+                      <p>结果：EF = -(3e²kF)/(4πε₀) × N</p>
+                      <p>= -(3/4) × (e²kF)/(πε₀) × N</p>
+                    </div>
+                    <div class="physics-insight">
+                      <p><strong>单粒子交换能：</strong>εx = -(3e²kF)/(4πε₀)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="physical-interpretation">
+            <h3>🎯 物理诠释与参数分析</h3>
+            <div class="interpretation-grid">
+              <div class="interpretation-card">
+                <h4>🔬 能量尺度比较</h4>
+                <div class="energy-scales">
+                  <div class="scale-item">
+                    <h5>费米能：</h5>
+                    <div class="equation-block">
+                      <p>εF = (ℏ²/2m)(3π²n)^(2/3)</p>
+                      <p>典型值：1-10 eV</p>
+                    </div>
+                  </div>
+                  <div class="scale-item">
+                    <h5>交换能：</h5>
+                    <div class="equation-block">
+                      <p>|εx| = (3e²/4πε₀)(3π²n)^(1/3)</p>
+                      <p>典型值：0.1-1 eV</p>
+                    </div>
+                  </div>
+                  <div class="scale-item">
+                    <h5>相互作用参数：</h5>
+                    <div class="equation-block">
+                      <p>rs = (3/4πn)^(1/3)/aB</p>
+                      <p>aB = ℏ²ε₀/(me²) (玻尔半径)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="interpretation-card">
+                <h4>📊 不同金属中的参数</h4>
+                <div class="metal-parameters">
+                  <table class="parameter-table">
+                    <thead>
+                      <tr>
+                        <th>金属</th>
+                        <th>rs</th>
+                        <th>εF (eV)</th>
+                        <th>|εx| (eV)</th>
+                        <th>εx/εF</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Li</td><td>3.25</td><td>4.7</td><td>0.39</td><td>0.083</td></tr>
+                      <tr><td>Na</td><td>3.93</td><td>3.1</td><td>0.28</td><td>0.090</td></tr>
+                      <tr><td>Al</td><td>2.07</td><td>11.7</td><td>0.68</td><td>0.058</td></tr>
+                      <tr><td>Cu</td><td>2.67</td><td>7.0</td><td>0.48</td><td>0.069</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="wick-theorem-section">
+            <h3>🔄 Wick定理的应用与推导</h3>
+            <div class="wick-framework">
+              <div class="concept-card">
+                <div class="concept-icon">🎯</div>
+                <h4>Wick定理基础</h4>
+                <div class="mathematical-content">
+                  <h5>正规乘积定义：</h5>
+                  <div class="equation-block">
+                    <p>:A₁A₂...Aₙ: = 正规排列的算符乘积</p>
+                    <p>产生算符在左，湮灭算符在右</p>
+                  </div>
+                  
+                  <h5>收缩定义：</h5>
+                  <div class="equation-block">
+                    <p>ĉₖĉ†ₖ' = :ĉₖĉ†ₖ': + ⟨ĉₖĉ†ₖ'⟩</p>
+                    <p>⟨ĉₖĉ†ₖ'⟩ = δₖₖ'f(k) (收缩)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div class="concept-icon">📈</div>
+                <h4>四算符收缩</h4>
+                <div class="mathematical-content">
+                  <h5>完全收缩：</h5>
+                  <div class="equation-block">
+                    <p>⟨ĉ†ₖ₊q↑ĉ†ₖ'₋q↓ĉₖ'↓ĉₖ↑⟩</p>
+                    <p>= ⟨ĉ†ₖ₊q↑ĉₖ↑⟩⟨ĉ†ₖ'₋q↓ĉₖ'↓⟩ - ⟨ĉ†ₖ₊q↑ĉₖ'↓⟩⟨ĉ†ₖ'₋q↓ĉₖ↑⟩</p>
+                  </div>
+                  
+                  <h5>费米子反对称性：</h5>
+                  <div class="equation-block">
+                    <p>第一项：δₖ₊q,ₖδₖ'₋q,ₖ'f(k)f(k') = δq,0f(k)f(k')</p>
+                    <p>第二项：δₖ₊q,ₖ'δₖ'₋q,ₖf(k+q)f(k'-q) = δₖ,ₖ'f(k)f(k+q)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wick-applications">
+              <h4>Wick定理在多体计算中的应用</h4>
+              <div class="application-examples">
+                <div class="example-card">
+                  <h5>🔵 密度-密度关联</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>⟨n̂ₖn̂ₖ'⟩ = ⟨ĉ†ₖĉₖĉ†ₖ'ĉₖ'⟩</p>
+                      <p>= δₖₖ'f(k) + f(k)f(k') - δₖₖ'f(k)²</p>
+                      <p>= δₖₖ'f(k)(1-f(k)) + f(k)f(k')</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="example-card">
+                  <h5>🔴 配对关联函数</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>⟨ĉₖ↑ĉ₋ₖ↓ĉ†₋ₖ'↓ĉ†ₖ'↑⟩</p>
+                      <p>= δₖₖ'(1-f(k))(1-f(-k)) (Cooper对)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="density-wave-section">
+            <h3>🌊 电荷密度波和自旋密度波</h3>
+            <div class="density-wave-framework">
+              <div class="concept-card">
+                <div class="concept-icon">⚡</div>
+                <h4>电荷密度波(CDW)</h4>
+                <div class="mathematical-content">
+                  <h5>序参量：</h5>
+                  <div class="equation-block">
+                    <p>ρ(r) = ⟨ψ†(r)ψ(r)⟩ = ρ₀ + Δρcos(Qr + φ)</p>
+                    <p>Q = 2kF (嵌套矢量)</p>
+                  </div>
+                  
+                  <h5>能隙方程：</h5>
+                  <div class="equation-block">
+                    <p>Δ = -V∑ₖ (Δ/2Eₖ)tanh(Eₖ/2T)</p>
+                    <p>Eₖ = √((εₖ-μ)² + Δ²)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div class="concept-icon">🧲</div>
+                <h4>自旋密度波(SDW)</h4>
+                <div class="mathematical-content">
+                  <h5>序参量：</h5>
+                  <div class="equation-block">
+                    <p>⟨S(r)⟩ = M cos(Qr + φ)ẑ</p>
+                    <p>M = ⟨ψ†(r)σzψ(r)⟩</p>
+                  </div>
+                  
+                  <h5>平均场哈密顿量：</h5>
+                  <div class="equation-block">
+                    <p>H = ∑ₖσ εₖĉ†ₖσĉₖσ + M∑ₖ(ĉ†ₖ₊Q↑ĉₖ↓ + h.c.)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="instability-analysis">
+              <h4>费米面不稳定性分析</h4>
+              <div class="instability-conditions">
+                <div class="condition-card">
+                  <h5>🎯 嵌套条件</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>完美嵌套：εₖ₊Q = -εₖ</p>
+                      <p>一维情况：Q = 2kF</p>
+                      <p>二维情况：部分嵌套</p>
+                    </div>
+                    <div class="physics-insight">
+                      <p><strong>物理机制：</strong>费米面上的电子可以通过Q矢量散射到另一部分费米面</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="condition-card">
+                  <h5>📊 响应函数发散</h5>
+                  <div class="mathematical-content">
+                    <div class="equation-block">
+                      <p>χ₀(Q,ω) = ∑ₖ (f(εₖ)-f(εₖ₊Q))/(ω-εₖ₊Q+εₖ+iδ)</p>
+                      <p>Re χ₀(Q,0) → ∞ (对数发散)</p>
+                    </div>
+                    <div class="physics-insight">
+                      <p><strong>临界温度：</strong>T_c ∝ D exp(-1/|V|ρ(εF))</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="experimental-signatures">
+              <h4>实验观测特征</h4>
+              <div class="signature-grid">
+                <div class="signature-card">
+                  <h5>🔬 ARPES观测</h5>
+                  <div class="experimental-content">
+                    <div class="physics-insight">
+                      <p><strong>能隙开启：</strong>费米面处出现能隙</p>
+                      <p><strong>费米面重构：</strong>布里渊区折叠</p>
+                      <p><strong>准粒子峰：</strong>相干峰和非相干背景</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="signature-card">
+                  <h5>📡 中子散射</h5>
+                  <div class="experimental-content">
+                    <div class="physics-insight">
+                      <p><strong>磁性布拉格峰：</strong>SDW的直接证据</p>
+                      <p><strong>声子软化：</strong>CDW相变前兆</p>
+                      <p><strong>自旋激发：</strong>磁振子谱</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="signature-card">
+                  <h5>⚡ 输运性质</h5>
+                  <div class="experimental-content">
+                    <div class="physics-insight">
+                      <p><strong>电阻率异常：</strong>相变处的跳跃</p>
+                      <p><strong>霍尔系数：</strong>载流子密度变化</p>
+                      <p><strong>热电效应：</strong>塞贝克系数增强</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
         <h2>态密度</h2>
         <div class="concept-grid">
           <div class="concept-card">
@@ -983,6 +1462,362 @@ export default {
   flex: 1;
 }
 
+/* 微扰理论计算相关样式 */
+.perturbation-theory-section {
+  background: linear-gradient(135deg, #e8f4fd 0%, #d1ecf1 100%);
+  border: 2px solid #bee5eb;
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  box-shadow: 0 8px 25px rgba(0, 123, 191, 0.1);
+}
+
+.perturbation-theory-section h2 {
+  color: #0c5460;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #17a2b8;
+}
+
+.fermi-sea-description {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.fermi-sea-description h3 {
+  color: #e65100;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.slater-determinant {
+  background: white;
+  border: 1px solid #ffc107;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.1);
+}
+
+.slater-determinant h4 {
+  color: #f57c00;
+  margin-bottom: 1rem;
+}
+
+.density-calculation {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border: 2px solid #ba68c8;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.density-calculation h3 {
+  color: #6a1b9a;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.calculation-step {
+  background: white;
+  border: 1px solid #ba68c8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(186, 104, 200, 0.1);
+}
+
+.calculation-step::before {
+  content: "📊";
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  background: white;
+  padding: 0 5px;
+  font-size: 1.2rem;
+}
+
+.calculation-step h4 {
+  color: #8e24aa;
+  margin-bottom: 1rem;
+}
+
+.energy-calculation {
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  border: 2px solid #66bb6a;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.energy-calculation h3 {
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.energy-component {
+  background: white;
+  border: 1px solid #66bb6a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(102, 187, 106, 0.1);
+}
+
+.energy-component h4 {
+  color: #388e3c;
+  margin-bottom: 1rem;
+}
+
+.perturbation-correction {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  border: 2px solid #ef5350;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.perturbation-correction h3 {
+  color: #c62828;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.hamiltonian-decomposition {
+  background: white;
+  border: 1px solid #ef5350;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(239, 83, 80, 0.1);
+}
+
+.hamiltonian-decomposition h4 {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+
+.exchange-calculation {
+  background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%);
+  border: 2px solid #8bc34a;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.exchange-calculation h3 {
+  color: #558b2f;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.exchange-step {
+  background: white;
+  border: 1px solid #8bc34a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(139, 195, 74, 0.1);
+}
+
+.exchange-step h4 {
+  color: #689f38;
+  margin-bottom: 1rem;
+}
+
+.parameter-analysis {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border: 2px solid #9e9e9e;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.parameter-analysis h3 {
+  color: #424242;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.parameter-table {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.parameter-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.parameter-table th {
+  background: linear-gradient(135deg, #607d8b 0%, #455a64 100%);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.parameter-table td {
+  padding: 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.parameter-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.parameter-table tr:hover {
+  background-color: #e3f2fd;
+}
+
+.wick-theorem-section {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  border: 2px solid #ff9800;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.wick-theorem-section h3 {
+  color: #e65100;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.wick-application {
+  background: white;
+  border: 1px solid #ff9800;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.1);
+}
+
+.wick-application h4 {
+  color: #f57c00;
+  margin-bottom: 1rem;
+}
+
+.density-wave-section {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border: 2px solid #9c27b0;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.density-wave-section h3 {
+  color: #6a1b9a;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.wave-type {
+  background: white;
+  border: 1px solid #9c27b0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.1);
+}
+
+.wave-type h4 {
+  color: #7b1fa2;
+  margin-bottom: 1rem;
+}
+
+.instability-analysis {
+  background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+  border: 2px solid #26a69a;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.instability-analysis h3 {
+  color: #00695c;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.instability-condition {
+  background: white;
+  border: 1px solid #26a69a;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(38, 166, 154, 0.1);
+}
+
+.instability-condition h4 {
+  color: #00796b;
+  margin-bottom: 1rem;
+}
+
+.experimental-observation {
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+  border: 2px solid #e91e63;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.experimental-observation h3 {
+  color: #ad1457;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.observation-method {
+  background: white;
+  border: 1px solid #e91e63;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.1);
+}
+
+.observation-method h4 {
+  color: #c2185b;
+  margin-bottom: 1rem;
+}
+
+.derivation-step {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.derivation-step::before {
+  content: "🔍";
+  position: absolute;
+  top: -8px;
+  left: 15px;
+  background: white;
+  padding: 0 5px;
+  font-size: 1rem;
+}
+
+.derivation-step h4 {
+  color: #495057;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
   .chapter-content {
     padding: 1rem;
@@ -1003,6 +1838,27 @@ export default {
   .chapter-meta {
     flex-direction: column;
     gap: 1rem;
+  }
+  
+  .perturbation-theory-section,
+  .fermi-sea-description,
+  .density-calculation,
+  .energy-calculation,
+  .perturbation-correction,
+  .exchange-calculation,
+  .parameter-analysis,
+  .wick-theorem-section,
+  .density-wave-section,
+  .instability-analysis,
+  .experimental-observation {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .parameter-table th,
+  .parameter-table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
   }
 }
 </style>

@@ -43,13 +43,17 @@
         <h3>典型数值</h3>
         <div class="data-table">
           <table>
-            <tr><th>材料</th><th>λ_L (nm)</th><th>T_c (K)</th><th>类型</th></tr>
-            <tr><td>Al</td><td>50</td><td>1.2</td><td>s波</td></tr>
-            <tr><td>Sn</td><td>34</td><td>3.7</td><td>s波</td></tr>
-            <tr><td>Pb</td><td>37</td><td>7.2</td><td>s波</td></tr>
-            <tr><td>Nb</td><td>39</td><td>9.3</td><td>s波</td></tr>
-            <tr><td>YBCO</td><td>150</td><td>93</td><td>d波</td></tr>
-            <tr><td>BSCCO</td><td>200</td><td>85</td><td>d波</td></tr>
+            <thead>
+              <tr><th>材料</th><th>λ_L (nm)</th><th>T_c (K)</th><th>类型</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Al</td><td>50</td><td>1.2</td><td>s波</td></tr>
+              <tr><td>Sn</td><td>34</td><td>3.7</td><td>s波</td></tr>
+              <tr><td>Pb</td><td>37</td><td>7.2</td><td>s波</td></tr>
+              <tr><td>Nb</td><td>39</td><td>9.3</td><td>s波</td></tr>
+              <tr><td>YBCO</td><td>150</td><td>93</td><td>d波</td></tr>
+              <tr><td>BSCCO</td><td>200</td><td>85</td><td>d波</td></tr>
+            </tbody>
           </table>
         </div>
       </div>

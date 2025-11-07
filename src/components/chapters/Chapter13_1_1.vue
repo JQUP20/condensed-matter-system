@@ -91,18 +91,22 @@
           <li><katex-element :expression="`\\alpha \\approx 0.5`"></katex-element>：同位素效应指数</li>
         </ul>
         
-        <div class="isotope-examples">
-          <h4>实验例子</h4>
-          <div class="data-table">
+          <div class="isotope-examples">
+            <h4>实验例子</h4>
+            <div class="data-table">
             <table>
-              <tr><th>材料</th><th>同位素</th><th>T_c (K)</th></tr>
-              <tr><td>汞</td><td>^{199}Hg</td><td>4.161</td></tr>
-              <tr><td>汞</td><td>^{203}Hg</td><td>4.126</td></tr>
-              <tr><td>锡</td><td>^{116}Sn</td><td>3.722</td></tr>
-              <tr><td>锡</td><td>^{124}Sn</td><td>3.695</td></tr>
+              <thead>
+                <tr><th>材料</th><th>同位素</th><th>T_c (K)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>汞</td><td>^{199}Hg</td><td>4.161</td></tr>
+                <tr><td>汞</td><td>^{203}Hg</td><td>4.126</td></tr>
+                <tr><td>锡</td><td>^{116}Sn</td><td>3.722</td></tr>
+                <tr><td>锡</td><td>^{124}Sn</td><td>3.695</td></tr>
+              </tbody>
             </table>
+            </div>
           </div>
-        </div>
       </div>
       
       <div class="theoretical-significance">

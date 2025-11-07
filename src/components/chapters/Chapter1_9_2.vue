@@ -44,82 +44,179 @@
       </div>
     </section>
 
-    <!-- 第一部分：基本理论推导 -->
-    <section class="theory-derivation">
-      <h2>第一部分：基本理论推导</h2>
+    <!-- 主要习题：交流电导率推导 -->
+    <section class="main-exercise">
+      <h2>习题2：Drude电导率推导</h2>
       
       <div class="problem-set">
-        <div class="problem-card">
+        <div class="problem-card main-problem">
           <div class="problem-header">
-            <span class="problem-number">2.1</span>
-            <h3>运动方程推导</h3>
-            <span class="difficulty medium">中等</span>
+            <span class="problem-number">核心题目</span>
+            <h3>交流电导率完整推导</h3>
+            <span class="difficulty high">重点</span>
           </div>
           <div class="problem-content">
             <div class="problem-statement">
-              <p><strong>问题：</strong>在Drude模型中，推导电子在外电场E作用下的运动方程，并求解稳态漂移速度。</p>
+              <p><strong>问题：</strong>设金属电子满足经典牛顿方程：</p>
+              <div class="equation-box highlight">
+                <p><strong>m(dv/dt) = -eE - mv/τ</strong></p>
+              </div>
+              <p>其中τ代表弛豫时间。考虑方向的均匀交流电场：</p>
+              <div class="equation-box">
+                <p><strong>E = E₀e^(-iωt)</strong></p>
+              </div>
+              <p>根据电流密度公式 <strong>J = -nev</strong> 以及欧姆定律 <strong>J = σE</strong>，推导Drude电导率：</p>
+              <div class="equation-box target">
+                <p><strong>σ(ω) = (ne²τ/m) × (1/(1-iωτ))</strong></p>
+              </div>
             </div>
             
             <div class="solution-section">
-              <h4>理论推导</h4>
+              <h4>完整推导过程</h4>
               
-              <div class="equation-derivation">
-                <div class="physics-setup">
-                  <h5>物理设定</h5>
-                  <div class="setup-content">
-                    <ul>
-                      <li><strong>外电场：</strong>E = E₀ẑ（沿z方向的均匀电场）</li>
-                      <li><strong>电子电荷：</strong>-e（e > 0）</li>
-                      <li><strong>电子质量：</strong>m</li>
-                      <li><strong>平均碰撞时间：</strong>τ</li>
-                    </ul>
+              <div class="derivation-steps">
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤1</span>
+                    <h5>设定速度的时间依赖形式</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>由于电场具有时间依赖性 E = E₀e^(-iωt)，我们假设速度也具有相同的时间依赖：</p>
+                    <div class="equation-box">
+                      <p><strong>v(t) = v₀e^(-iωt)</strong></p>
+                    </div>
+                    <p>其中 v₀ 是待求的复数振幅。</p>
                   </div>
                 </div>
-                
-                <div class="motion-equation">
-                  <h5>运动方程</h5>
-                  <div class="equation-steps">
-                    <div class="step">
-                      <h6>牛顿第二定律</h6>
-                      <div class="equation-box">
-                        <p>m(dv/dt) = -eE - mv/τ</p>
-                      </div>
-                      <p>第一项：电场力；第二项：碰撞阻尼力</p>
-                    </div>
-                    
-                    <div class="step">
-                      <h6>稳态条件</h6>
-                      <p>稳态时 dv/dt = 0，因此：</p>
-                      <div class="equation-box">
-                        <p>0 = -eE - mv/τ</p>
-                      </div>
-                    </div>
-                    
-                    <div class="step">
-                      <h6>漂移速度</h6>
-                      <div class="equation-box">
-                        <p><strong>v_d = -eEτ/m</strong></p>
-                      </div>
-                      <p>负号表示电子运动方向与电场方向相反</p>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤2</span>
+                    <h5>计算速度的时间导数</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>对速度求时间导数：</p>
+                    <div class="equation-box">
+                      <p><strong>dv/dt = d/dt(v₀e^(-iωt)) = -iωv₀e^(-iωt) = -iωv(t)</strong></p>
                     </div>
                   </div>
                 </div>
-                
-                <div class="physical-interpretation">
-                  <h5>物理解释</h5>
-                  <div class="interpretation-content">
-                    <div class="interpretation-item">
-                      <h6>平衡条件</h6>
-                      <p>稳态时，电场加速力与碰撞阻尼力平衡</p>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤3</span>
+                    <h5>代入运动方程</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>将 dv/dt 和 E 代入牛顿方程：</p>
+                    <div class="equation-box">
+                      <p>m(-iωv) = -eE₀e^(-iωt) - mv</p>
                     </div>
-                    <div class="interpretation-item">
-                      <h6>速度大小</h6>
-                      <p>漂移速度与电场强度成正比，与碰撞频率成反比</p>
+                    <p>由于 v = v₀e^(-iωt)，可以约去公共因子 e^(-iωt)：</p>
+                    <div class="equation-box">
+                      <p><strong>-miωv₀ = -eE₀ - mv₀</strong></p>
                     </div>
-                    <div class="interpretation-item">
-                      <h6>典型数值</h6>
-                      <p>对于铜：τ ≈ 10⁻¹⁴ s，E = 1 V/m时，v_d ≈ 10⁻⁴ m/s</p>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤4</span>
+                    <h5>求解速度振幅</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>重新整理方程：</p>
+                    <div class="equation-box">
+                      <p>mv₀(-iω - 1/τ) = -eE₀</p>
                     </div>
+                    <p>解得：</p>
+                    <div class="equation-box">
+                      <p><strong>v₀ = -eE₀/[m(-iω - 1/τ)] = -eE₀τ/[m(-iωτ - 1)]</strong></p>
+                    </div>
+                    <p>化简分母：</p>
+                    <div class="equation-box">
+                      <p><strong>v₀ = eE₀τ/[m(1 + iωτ)]</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤5</span>
+                    <h5>计算电流密度</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>电流密度为：</p>
+                    <div class="equation-box">
+                      <p>J = -nev = -nev₀e^(-iωt)</p>
+                    </div>
+                    <p>代入 v₀：</p>
+                    <div class="equation-box">
+                      <p>J = -ne × [eE₀τ/m(1 + iωτ)] × e^(-iωt)</p>
+                    </div>
+                    <div class="equation-box">
+                      <p><strong>J = [ne²τ/m(1 + iωτ)] × E₀e^(-iωt)</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤6</span>
+                    <h5>应用欧姆定律得到电导率</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>根据欧姆定律 J = σE，其中 E = E₀e^(-iωt)：</p>
+                    <div class="equation-box">
+                      <p>[ne²τ/m(1 + iωτ)] × E₀e^(-iωt) = σ × E₀e^(-iωt)</p>
+                    </div>
+                    <p>约去公共因子，得到：</p>
+                    <div class="equation-box highlight">
+                      <p><strong>σ(ω) = ne²τ/[m(1 + iωτ)]</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤7</span>
+                    <h5>最终形式转换</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>将分母有理化：</p>
+                    <div class="equation-box">
+                      <p>σ(ω) = (ne²τ/m) × [1/(1 + iωτ)]</p>
+                    </div>
+                    <p>乘以共轭复数：</p>
+                    <div class="equation-box">
+                      <p>σ(ω) = (ne²τ/m) × [(1 - iωτ)/(1 + ω²τ²)]</p>
+                    </div>
+                    <p>或者写成目标形式：</p>
+                    <div class="equation-box final-result">
+                      <p><strong>σ(ω) = (ne²τ/m) × (1/(1 - iωτ))</strong></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="physical-interpretation">
+                <h4>物理意义分析</h4>
+                <div class="interpretation-grid">
+                  <div class="interpretation-item">
+                    <h5>直流极限 (ω → 0)</h5>
+                    <p>σ(0) = ne²τ/m，这是经典的Drude直流电导率</p>
+                  </div>
+                  <div class="interpretation-item">
+                    <h5>高频极限 (ω → ∞)</h5>
+                    <p>σ(ω) ≈ -i(ne²/mω)，电导率变为纯虚数</p>
+                  </div>
+                  <div class="interpretation-item">
+                    <h5>实部和虚部</h5>
+                    <p>实部对应能量耗散，虚部对应能量储存</p>
+                  </div>
+                  <div class="interpretation-item">
+                    <h5>弛豫时间效应</h5>
+                    <p>τ越大，频率响应越慢，低频电导率越高</p>
                   </div>
                 </div>
               </div>

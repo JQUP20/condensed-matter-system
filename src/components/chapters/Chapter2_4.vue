@@ -100,6 +100,217 @@
         </div>
       </section>
 
+      <!-- Coulomb电子气模型 -->
+      <section class="content-section">
+        <h2>Coulomb电子气：多体物理的新手教程</h2>
+        
+        <div class="jellium-introduction">
+          <h3>Jellium模型简介</h3>
+          <p class="model-description">
+            在这一部分，作为二次量子化的应用，我们讨论并电子气或者Coulomb电子气模型，
+            即<strong>凝胶模型(jellium model)</strong>。这相当于是金属中电子气体的简化描述。
+            在一次量子化形式中，体系的哈密顿量由三项组成，即电子部分、离子部分、
+            以及电子与正电荷背景的相互作用项。
+          </p>
+          
+          <div class="hamiltonian-decomposition">
+            <h4>完整哈密顿量分解</h4>
+            <div class="equation-display">
+              <p><strong>H = H<sub>el</sub> + H<sub>b</sub> + H<sub>el-b</sub></strong> &nbsp;&nbsp;&nbsp;&nbsp;(2.4.1)</p>
+            </div>
+            
+            <div class="hamiltonian-terms">
+              <div class="term-card">
+                <h5>电子部分 H<sub>el</sub></h5>
+                <div class="equation-display">
+                  <p>H<sub>el</sub> = Σ<sub>i=1</sub><sup>N</sup> [p<sub>i</sub>²/(2m) + e²/2 Σ<sub>i≠j</sub> e<sup>-μ|r⃗<sub>i</sub>-r⃗<sub>j</sub>|</sup>/|r⃗<sub>i</sub> - r⃗<sub>j</sub>|] &nbsp;&nbsp;&nbsp;&nbsp;(2.4.2)</p>
+                </div>
+              </div>
+              
+              <div class="term-card">
+                <h5>背景部分 H<sub>b</sub></h5>
+                <div class="equation-display">
+                  <p>H<sub>b</sub> = e²/2 ∫ d³xd³x' n(r⃗)n(r⃗')e<sup>-μ|r⃗-r⃗'|</sup>/|r⃗ - r⃗'| &nbsp;&nbsp;&nbsp;&nbsp;(2.4.3)</p>
+                </div>
+              </div>
+              
+              <div class="term-card">
+                <h5>电子-背景相互作用 H<sub>el-b</sub></h5>
+                <div class="equation-display">
+                  <p>H<sub>el-b</sub> = -e² Σ<sub>i=1</sub><sup>N</sup> ∫ d³x n(r⃗)e<sup>-μ|r⃗-r⃗<sub>i</sub>|</sup>/|r⃗ - r⃗<sub>i</sub>| &nbsp;&nbsp;&nbsp;&nbsp;(2.4.4)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="regularization-note">
+            <h4>正规化处理</h4>
+            <p>
+              为了避免长程Coulomb相互作用的发散特性，我们给相互作用加上一个衰减部分e<sup>-μ|r⃗|</sup>(μ > 0)，
+              即相当于用Yukawa汤川势代替裸的Coulomb势。当然在计算的最后要取μ → 0以回到原来Coulomb力的情况。
+              这种做法叫做Coulomb相互作用正规化(Coulomb interaction regularization)。
+            </p>
+          </div>
+        </div>
+
+        <div class="detailed-calculation">
+          <h3>相互作用项的详细计算</h3>
+          
+          <div class="calculation-step">
+            <h4>背景相互作用能计算</h4>
+            <p>假设正电荷均匀分布的并且与电子数相同，则有n(r⃗) = ψ̂<sub>e</sub>(电中性条件)，那么离子实之间的Coulomb能是：</p>
+            
+            <div class="equation-sequence">
+              <div class="equation-display">
+                <p>H<sub>b</sub> = e²/2 (N/V)² ∫ d³xd³x' e<sup>-μ|r⃗-r⃗'|</sup>/|r⃗ - r⃗'| = e²/2 (N/V)² V ∫ d³R 4πr²dr e<sup>-μr</sup>/r</p>
+              </div>
+              
+              <div class="equation-display">
+                <p>= e²/2 (N/V)² V 4π/μ² = 1/2 e² N² 4π/(V μ²) &nbsp;&nbsp;&nbsp;&nbsp;(2.4.5)</p>
+              </div>
+            </div>
+            
+            <p>这里我们引入了相对坐标和质心坐标 r⃗ = r⃗' - r⃗', R⃗ = (r⃗ + r⃗')/2。对于电子与正电荷背景的Coulomb能可计算为：</p>
+            
+            <div class="equation-display">
+              <p>H<sub>el-b</sub> = -e² N/V Σ<sub>i=1</sub><sup>N</sup> ∫ d³x e<sup>-μ|r⃗-r⃗<sub>i</sub>|</sup>/|r⃗ - r⃗<sub>i</sub>| = -e² N/V N ∫ d³x e<sup>-μ|r⃗|</sup>/|r⃗| = -e² N² 4π/(V μ²) &nbsp;&nbsp;&nbsp;&nbsp;(2.4.6)</p>
+            </div>
+          </div>
+          
+          <div class="calculation-step">
+            <h4>二次量子化表示</h4>
+            <p>这上述计算中，对每一个离子的积分都算平移了一步移到原点r⃗ → r⃗ + r⃗<sub>i</sub>。
+            这种哈密顿量中的两项已经计算完成，剩下的电子部分根据一般的二次量子化操作，其形式是：</p>
+            
+            <div class="equation-display">
+              <p>H<sub>el</sub> = Σ<sub>kσ</sub> k²/(2m) ĉ<sub>kσ</sub>†ĉ<sub>kσ</sub> + 1/2 Σ<sub>k,k',q,σ,σ'</sub> V<sub>q</sub>ĉ<sub>k+q,σ</sub>†ĉ<sub>k'-q,σ'</sub>†ĉ<sub>k',σ'</sub>ĉ<sub>k,σ</sub> &nbsp;&nbsp;&nbsp;&nbsp;(2.4.7)</p>
+            </div>
+            
+            <p>其中相互作用V<sub>q</sub>是：</p>
+            
+            <div class="complex-calculation">
+              <div class="equation-display">
+                <p>V<sub>q</sub> = e²/V ∫ d³re<sup>-iq⃗·r⃗</sup> e<sup>-μr</sup>/|r⃗| = 2πe²/V ∫<sub>0</sub><sup>∞</sup> r²dr e<sup>-μr</sup>/r ∫<sub>-1</sub><sup>1</sup> dxe<sup>-iqrx</sup> = 2πe²/iqV ∫<sub>0</sub><sup>∞</sup> dr(e<sup>-(μ+iq)r</sup> - e<sup>-(μ-iq)r</sup>)</p>
+              </div>
+              
+              <div class="equation-display">
+                <p>= 2πe²/iqV (e<sup>-(μ+iq)∞</sup> - 1)/(-μ - iq) - (e<sup>-(μ-iq)∞</sup> - 1)/(-μ + iq)) = 1/(iqV) 4πe²/(μ² + q²) &nbsp;&nbsp;&nbsp;&nbsp;(2.4.8)</p>
+              </div>
+            </div>
+            
+            <p>注意到上式中μ是大于0的有限值，因此e<sup>-μ∞</sup> = 0，这样没有明显取极限的"∞"部分的贡献都不用考虑。</p>
+          </div>
+          
+          <div class="calculation-step">
+            <h4>明确哈密顿量形式</h4>
+            <p>这样电子部分的明确哈密顿量形式是：</p>
+            
+            <div class="equation-display">
+              <p>H<sub>el</sub> = Σ<sub>kσ</sub> k²/(2m) ĉ<sub>kσ</sub>†ĉ<sub>kσ</sub> + 1/(2V) Σ<sub>k,k',q,σ,σ'</sub> 4πe²/(μ² + q²) ĉ<sub>k+q,σ</sub>†ĉ<sub>k'-q,σ'</sub>†ĉ<sub>k',σ'</sub>ĉ<sub>k,σ</sub> &nbsp;&nbsp;&nbsp;&nbsp;(2.4.9)</p>
+            </div>
+            
+            <p>我们先考虑q = 0部分的相互作用：</p>
+            
+            <div class="zero-momentum-calculation">
+              <div class="equation-display">
+                <p>V<sub>0</sub> = 4πe²/(2μ²V) Σ<sub>k,k',σ,σ'</sub> ĉ<sub>kσ</sub>†ĉ<sub>k'σ'</sub>†ĉ<sub>k'σ'</sub>ĉ<sub>kσ</sub> = -e² 4π/(2V μ²) [Σ<sub>kσ</sub> ĉ<sub>kσ</sub>†ĉ<sub>kσ</sub>] [(Σ<sub>k'σ'</sub> ĉ<sub>k'σ'</sub>†ĉ<sub>k'σ'</sub>)]</p>
+              </div>
+              
+              <div class="equation-display">
+                <p>= -e² 4π/(2V μ²) [N - N²] = 1/2 e² N 4π/(V μ²) - 1/2 e² N² 4π/(V μ²) &nbsp;&nbsp;&nbsp;&nbsp;(2.4.10)</p>
+              </div>
+            </div>
+            
+            <p>在这里我们利用电子数算符N = Σ<sub>kσ</sub> ĉ<sub>kσ</sub>†ĉ<sub>kσ</sub> 与哈密顿量对易性易体系的守恒量。
+            用电子数目N代替N̂，此处外势为0，负号可刻略，我们发现：</p>
+            
+            <div class="equation-display highlighted">
+              <p><strong>V<sub>0</sub> + H<sub>b</sub> + H<sub>el-b</sub> = 0</strong> &nbsp;&nbsp;&nbsp;&nbsp;(2.4.11)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="physical-parameters">
+          <h3>金属电子气中的典型长度尺度</h3>
+          
+          <div class="parameter-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>物理量</th>
+                  <th>电子平均距离</th>
+                  <th>Bohr半径</th>
+                  <th>Wigner-Seitz半径</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>符号</td>
+                  <td>r<sub>0</sub></td>
+                  <td>a<sub>B</sub></td>
+                  <td>r<sub>s</sub></td>
+                </tr>
+                <tr>
+                  <td>具体形式</td>
+                  <td>1/√(4πn)</td>
+                  <td>1/α<sub>fs</sub></td>
+                  <td>r<sub>0</sub>/a<sub>B</sub></td>
+                </tr>
+                <tr>
+                  <td>数值</td>
+                  <td>1 ~ 3Å</td>
+                  <td>0.53Å</td>
+                  <td>2 ~ 6</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="table-caption"><strong>Table 2.2:</strong> 金属电子气中的典型长度尺度</p>
+          </div>
+        </div>
+
+        <div class="final-hamiltonian">
+          <h3>最终的有效哈密顿量</h3>
+          
+          <p>
+            也就是说电子之间的直接Coulomb相互作用与正电荷背景相互作用用好抵消，这实际上是系统电中性的部分就是纯粹的电子部分，且相互作用不含q = 0：
+          </p>
+          
+          <div class="final-equation-box">
+            <div class="equation-display featured">
+              <p><strong>H<sub>el</sub> = Σ<sub>kσ</sub> k²/(2m) ĉ<sub>kσ</sub>†ĉ<sub>kσ</sub> + 1/(2V) Σ<sub>k,k',q≠0,σ,σ'</sub> 4πe²/q² ĉ<sub>k+q,σ</sub>†ĉ<sub>k'-q,σ'</sub>†ĉ<sub>k',σ'</sub>ĉ<sub>k,σ</sub></strong> &nbsp;&nbsp;&nbsp;&nbsp;(2.4.12)</p>
+            </div>
+          </div>
+          
+          <div class="physical-interpretation">
+            <h4>物理解释与参数分析</h4>
+            <p>
+              我们已经令μ = 0因为q ≠ 0。为了便于讨论，引入特征长度r<sub>0</sub>，代表每个电子之间的平均距离，
+              通过N/V = 1/(4πr<sub>0</sub>³/3)定义。另一方面，Bohr半径a<sub>B</sub> = 1/α<sub>fs</sub> = 0.53Å，对于一般的金属，
+              r<sub>s</sub> = r<sub>0</sub>/a<sub>B</sub> ~ 2 - 6。如果定义无量纲的体系的能量尺度，28可以看到，如果r<sub>s</sub> << 1，
+              那么就可以忽略相互作用的微扰修正物理上，r<sub>s</sub> << 1表明平均到每个电子的动能占有1 - 2个电子格相和反应联系，
+              此外，<< 1称为高密度极限，而r<sub>s</sub> >> 1称为低密度极限或强关联区。
+            </p>
+            
+            <div class="density-regimes">
+              <div class="regime-card">
+                <h5>高密度极限 (r<sub>s</sub> << 1)</h5>
+                <p>动能主导，相互作用可作微扰处理</p>
+              </div>
+              
+              <div class="regime-card">
+                <h5>中等密度 (r<sub>s</sub> ~ 1)</h5>
+                <p>动能与相互作用能可比</p>
+              </div>
+              
+              <div class="regime-card">
+                <h5>低密度极限 (r<sub>s</sub> >> 1)</h5>
+                <p>相互作用主导，强关联区域</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="content-section">
         <h2>Coulomb相互作用的详细处理方法</h2>
         
@@ -984,6 +1195,210 @@ export default {
   color: #be185d;
   margin: 0 0 1rem 0;
   font-size: 1rem;
+}
+
+/* Coulomb电子气模型样式 */
+.jellium-introduction {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-radius: 12px;
+  padding: 25px;
+  margin: 20px 0;
+  border: 2px solid #f39c12;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+}
+
+.model-description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.hamiltonian-decomposition {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+}
+
+.hamiltonian-terms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.term-card {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #2196f3;
+  transition: transform 0.2s ease;
+}
+
+.term-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}
+
+.term-card h5 {
+  color: #1976d2;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.regularization-note {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #ff9800;
+}
+
+.detailed-calculation {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0;
+  border: 1px solid #dee2e6;
+}
+
+.calculation-step {
+  margin: 25px 0;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.equation-sequence {
+  margin: 15px 0;
+}
+
+.complex-calculation {
+  background: #f1f3f4;
+  padding: 15px;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+.zero-momentum-calculation {
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 1px solid #4caf50;
+}
+
+.highlighted {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 100%);
+  border: 2px solid #ff9800;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.physical-parameters {
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0;
+  border: 2px solid #9c27b0;
+}
+
+.parameter-table {
+  margin: 20px 0;
+}
+
+.parameter-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.parameter-table th {
+  background: linear-gradient(135deg, #673ab7 0%, #9c27b0 100%);
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.parameter-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.parameter-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.table-caption {
+  text-align: center;
+  font-style: italic;
+  margin-top: 10px;
+  color: #666;
+}
+
+.final-hamiltonian {
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  border-radius: 12px;
+  padding: 25px;
+  margin: 25px 0;
+  border: 2px solid #4caf50;
+}
+
+.final-equation-box {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  border: 2px solid #2e7d32;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+}
+
+.featured {
+  font-size: 1.2em;
+  text-align: center;
+  color: #1b5e20;
+}
+
+.physical-interpretation {
+  margin-top: 25px;
+}
+
+.density-regimes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.regime-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #4caf50;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.regime-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.regime-card h5 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .equation-block {

@@ -62,12 +62,16 @@
         <h3>典型材料</h3>
         <div class="materials-table">
           <table>
-            <tr><th>材料</th><th>T_c (K)</th><th>H_c(0) (Oe)</th><th>λ (nm)</th><th>ξ (nm)</th></tr>
-            <tr><td>Al</td><td>1.18</td><td>105</td><td>50</td><td>1600</td></tr>
-            <tr><td>Sn</td><td>3.72</td><td>309</td><td>34</td><td>230</td></tr>
-            <tr><td>In</td><td>3.41</td><td>282</td><td>64</td><td>360</td></tr>
-            <tr><td>Pb</td><td>7.20</td><td>803</td><td>37</td><td>83</td></tr>
-            <tr><td>Hg</td><td>4.15</td><td>411</td><td>71</td><td>150</td></tr>
+            <thead>
+              <tr><th>材料</th><th>T_c (K)</th><th>H_c(0) (Oe)</th><th>λ (nm)</th><th>ξ (nm)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Al</td><td>1.18</td><td>105</td><td>50</td><td>1600</td></tr>
+              <tr><td>Sn</td><td>3.72</td><td>309</td><td>34</td><td>230</td></tr>
+              <tr><td>In</td><td>3.41</td><td>282</td><td>64</td><td>360</td></tr>
+              <tr><td>Pb</td><td>7.20</td><td>803</td><td>37</td><td>83</td></tr>
+              <tr><td>Hg</td><td>4.15</td><td>411</td><td>71</td><td>150</td></tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -147,13 +151,17 @@
         <h3>典型第二类超导体</h3>
         <div class="type-ii-table">
           <table>
-            <tr><th>材料</th><th>T_c (K)</th><th>H_c2(0) (T)</th><th>κ</th><th>类型</th></tr>
-            <tr><td>Nb</td><td>9.3</td><td>0.4</td><td>0.7</td><td>弱耦合</td></tr>
-            <tr><td>V₃Si</td><td>17.1</td><td>23</td><td>25</td><td>A15</td></tr>
-            <tr><td>Nb₃Sn</td><td>18.3</td><td>28</td><td>40</td><td>A15</td></tr>
-            <tr><td>NbTi</td><td>9.8</td><td>14</td><td>50</td><td>合金</td></tr>
-            <tr><td>YBCO</td><td>93</td><td>120</td><td>100</td><td>高温</td></tr>
-            <tr><td>BSCCO</td><td>110</td><td>200</td><td>150</td><td>高温</td></tr>
+            <thead>
+              <tr><th>材料</th><th>T_c (K)</th><th>H_c2(0) (T)</th><th>κ</th><th>类型</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Nb</td><td>9.3</td><td>0.4</td><td>0.7</td><td>弱耦合</td></tr>
+              <tr><td>V₃Si</td><td>17.1</td><td>23</td><td>25</td><td>A15</td></tr>
+              <tr><td>Nb₃Sn</td><td>18.3</td><td>28</td><td>40</td><td>A15</td></tr>
+              <tr><td>NbTi</td><td>9.8</td><td>14</td><td>50</td><td>合金</td></tr>
+              <tr><td>YBCO</td><td>93</td><td>120</td><td>100</td><td>高温</td></tr>
+              <tr><td>BSCCO</td><td>110</td><td>200</td><td>150</td><td>高温</td></tr>
+            </tbody>
           </table>
         </div>
       </div>

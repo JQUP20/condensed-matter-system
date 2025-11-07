@@ -24,18 +24,20 @@
       </div>
     </div>
     
-    <div 
-      v-if="hasChildren && isExpanded" 
-      class="chapter-children"
-    >
-      <ChapterNode
-        v-for="child in node.children"
-        :key="child.id"
-        :node="child"
-        :selected-id="selectedId"
-        @select="$emit('select', $event)"
-      />
-    </div>
+    <Transition name="expand">
+      <div 
+        v-show="hasChildren && isExpanded" 
+        class="chapter-children"
+      >
+        <ChapterNode
+          v-for="child in node.children"
+          :key="child.id"
+          :node="child"
+          :selected-id="selectedId"
+          @select="$emit('select', $event)"
+        />
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -65,11 +67,21 @@ function toggleExpanded() {
 }
 
 function handleClick() {
-  emit('select', props.node)
-  
-  // 如果有子节点，点击时也展开/折叠
-  if (hasChildren.value) {
-    toggleExpanded()
+  try {
+    // 确保节点对象有效
+    if (!props.node || !props.node.id) {
+      console.warn('Invalid node clicked:', props.node)
+      return
+    }
+    
+    emit('select', props.node)
+    
+    // 如果有子节点，点击时也展开/折叠
+    if (hasChildren.value) {
+      toggleExpanded()
+    }
+  } catch (error) {
+    console.error('Error in handleClick:', error)
   }
 }
 </script>
@@ -174,5 +186,24 @@ function handleClick() {
 .level-1:not(:last-child) {
   border-bottom: 1px solid #e2e8f0;
   padding-bottom: 0.5rem;
+}
+
+/* Transition animations */
+.expand-enter-active,
+.expand-leave-active {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  opacity: 0;
+  max-height: 0;
+}
+
+.expand-enter-to,
+.expand-leave-from {
+  opacity: 1;
+  max-height: 1000px;
 }
 </style>

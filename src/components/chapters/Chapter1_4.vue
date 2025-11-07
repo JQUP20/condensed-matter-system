@@ -294,6 +294,535 @@
       </section>
 
       <section class="content-section">
+        <h2>多体薛定谔方程的详细形式</h2>
+        <div class="detailed-schrodinger">
+          <div class="full-hamiltonian">
+            <h3>完整的多体哈密顿量</h3>
+            <div class="equation-card primary">
+              <div class="equation-header">
+                <h4>多体薛定谔方程</h4>
+                <span class="equation-type">基本方程</span>
+              </div>
+              <div class="equation-body">
+                <div class="equation-formula large">
+                  iℏ ∂Ψ(r⃗₁,...,r⃗ₙ; R⃗₁,...,R⃗ₘ; t)/∂t = HΨ(r⃗₁,...,r⃗ₙ; R⃗₁,...,R⃗ₘ; t)
+                </div>
+                <div class="equation-breakdown">
+                  <h5>哈密顿量的完整形式：</h5>
+                  <div class="hamiltonian-terms">
+                    <div class="term-group electron-terms">
+                      <h6>电子动能</h6>
+                      <div class="equation-formula">
+                        H = Σᵢ₌₁ᴺ (-ℏ²/2mₑ)∇ᵢ² + (1/2)Σᵢ≠ⱼᴺ Vₑₑ(r⃗ᵢ - r⃗ⱼ)
+                      </div>
+                    </div>
+                    <div class="term-group nuclear-terms">
+                      <h6>原子核项</h6>
+                      <div class="equation-formula">
+                        + Σₐ₌₁ᴹ (-ℏ²/2Mₐ)∇ₐ² + (1/2)Σₐ≠ᵦᴹ Vₙₙ(R⃗ₐ - R⃗ᵦ)
+                      </div>
+                    </div>
+                    <div class="term-group interaction-terms">
+                      <h6>电子-原子核相互作用</h6>
+                      <div class="equation-formula">
+                        + Σᵢ₌₁ᴺ Σₐ₌₁ᴹ Vₑₙ(r⃗ᵢ - R⃗ₐ)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="physical-interpretation">
+                  <h5>物理意义解释：</h5>
+                  <div class="interpretation-grid">
+                    <div class="interpretation-item">
+                      <span class="symbol">r⃗ᵢ, R⃗ₐ</span>
+                      <span class="meaning">分别表示第i个电子和第a个原子核的坐标</span>
+                    </div>
+                    <div class="interpretation-item">
+                      <span class="symbol">mₑ, Mₐ</span>
+                      <span class="meaning">电子质量和原子核质量</span>
+                    </div>
+                    <div class="interpretation-item">
+                      <span class="symbol">Vₑₑ, Vₙₙ, Vₑₙ</span>
+                      <span class="meaning">电子-电子、核-核、电子-核相互作用势</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="complexity-discussion">
+            <h3>求解的复杂性</h3>
+            <div class="complexity-analysis">
+              <div class="problem-scale">
+                <h4>问题规模</h4>
+                <div class="scale-examples">
+                  <div class="scale-item">
+                    <div class="scale-header">
+                      <span class="material-type">金属</span>
+                      <span class="particle-count">~10²³ 电子</span>
+                    </div>
+                    <p>即使是最简单的金属，电子数目也是阿伏伽德罗常数量级</p>
+                  </div>
+                  <div class="scale-item">
+                    <div class="scale-header">
+                      <span class="material-type">半导体</span>
+                      <span class="particle-count">~10²² 载流子</span>
+                    </div>
+                    <p>载流子浓度虽然较低，但仍然是天文数字</p>
+                  </div>
+                  <div class="scale-item">
+                    <div class="scale-header">
+                      <span class="material-type">分子晶体</span>
+                      <span class="particle-count">~10²⁴ 原子</span>
+                    </div>
+                    <p>包含大量原子和电子的复杂系统</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="computational-limits">
+                <h4>计算限制</h4>
+                <div class="limit-analysis">
+                  <div class="dimension-growth">
+                    <h5>维度灾难</h5>
+                    <div class="equation-formula">
+                      N ~ (L/a)³ ~ 10²³ - 10²⁴
+                    </div>
+                    <p>
+                      通常电子的数目是巨大的，如果直接求解薛定谔方程，
+                      所需要处理的电子数目会大大超过现有计算机的能力。
+                    </p>
+                  </div>
+                  <div class="memory-requirements">
+                    <h5>存储需求</h5>
+                    <p>
+                      对于典型的固体材料中电子的数目至少在10²³量级，
+                      而用蒙特卡洛方法能计算的电子数最大为10⁴，
+                      差距实在太大。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>近似方法与理论框架</h2>
+        <div class="approximation-methods">
+          <div class="method-intro">
+            <p class="lead-text">
+              由于直接求解多体薛定谔方程在实际上是不可能的，
+              我们必须采取一些近似方法，也就是忽略某些或者关注的自由度，
+              常见的近似方法如下：
+            </p>
+          </div>
+
+          <div class="approximation-hierarchy">
+            <div class="approximation-level fundamental">
+              <div class="level-header">
+                <h3>基本近似</h3>
+                <span class="level-tag">基础层次</span>
+              </div>
+              <div class="approximation-cards">
+                <div class="approx-card highlighted">
+                  <div class="approx-header">
+                    <h4>自由电子近似</h4>
+                    <span class="approx-tag yellow">不考虑电子之间相互作用以及与晶格的相互作用</span>
+                  </div>
+                  <div class="approx-content">
+                    <div class="simplified-hamiltonian">
+                      <h5>简化后的哈密顿量：</h5>
+                      <div class="equation-formula">
+                        H = Σᵢ₌₁ᴺ (-ℏ²/2mₑ)∇ᵢ²Ψ(r⃗₁,...,r⃗ₙ; t)
+                      </div>
+                    </div>
+                    <div class="physical-picture">
+                      <p><strong>物理图像：</strong>电子在均匀的正电荷背景中自由运动</p>
+                      <div class="applications">
+                        <h6>适用范围：</h6>
+                        <ul>
+                          <li>简单金属的基本性质</li>
+                          <li>费米气体模型</li>
+                          <li>电子比热和磁化率的估算</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="approx-card highlighted">
+                  <div class="approx-header">
+                    <h4>独立电子近似</h4>
+                    <span class="approx-tag yellow">不考虑电子之间的相互作用但感受到晶格势的作用</span>
+                  </div>
+                  <div class="approx-content">
+                    <div class="simplified-hamiltonian">
+                      <h5>有效单粒子方程：</h5>
+                      <div class="equation-formula">
+                        [-ℏ²/2mₑ ∇² + Vₑff(r⃗ᵢ)]ψ(r⃗ᵢ, t) = iℏ ∂ψ(r⃗ᵢ, t)/∂t
+                      </div>
+                    </div>
+                    <div class="physical-picture">
+                      <p><strong>物理图像：</strong>每个电子在有效势场中独立运动</p>
+                      <div class="applications">
+                        <h6>理论基础：</h6>
+                        <ul>
+                          <li>能带理论</li>
+                          <li>布洛赫定理</li>
+                          <li>费米面概念</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="approximation-level advanced">
+              <div class="level-header">
+                <h3>高级近似方法</h3>
+                <span class="level-tag">进阶层次</span>
+              </div>
+              <div class="advanced-methods">
+                <div class="method-category">
+                  <h4>Hartree-Fock近似(HF)</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">考虑电子相互作用的直接交换与同接交换的效果</span>
+                    <div class="method-details">
+                      <p><strong>核心思想：</strong>用单行列式波函数近似多体波函数</p>
+                      <div class="hf-equations">
+                        <h5>Hartree-Fock方程：</h5>
+                        <div class="equation-formula">
+                          [ĥ + V̂ᴴᶠ]φᵢ = εᵢφᵢ
+                        </div>
+                        <p>其中 V̂ᴴᶠ 包含Hartree项和Fock交换项</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="method-category">
+                  <h4>无规相近似(random phase approximation,简称RPA)</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">是超越HF近似中最常用且最简单的方法</span>
+                    <div class="method-details">
+                      <p><strong>应用领域：</strong>研究电子气体以及超导配对的研究</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="method-category">
+                  <h4>局域密度近似(local density approximation,简称LDA)</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">密度泛函理论实际计算采用的主要近似方法</span>
+                    <div class="method-details">
+                      <p><strong>理论基础：</strong>Hohenberg-Kohn定理和Kohn-Sham方程</p>
+                      <div class="lda-framework">
+                        <h5>基本假设：</h5>
+                        <p>局域的交换关联能密度等于相同密度的均匀电子气的交换关联能密度</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="method-category">
+                  <h4>Gutzwiller近似</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">广泛应用于关联电子模型的定性计算</span>
+                    <div class="method-details">
+                      <p><strong>特点：</strong>把影子算符的效果用一系列系数代替进行极大简化模型的计算</p>
+                      <div class="gutzwiller-applications">
+                        <h5>主要应用：</h5>
+                        <ul>
+                          <li>强关联电子系统</li>
+                          <li>Mott金属-绝缘体转变</li>
+                          <li>重费米子系统</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="approximation-level specialized">
+              <div class="level-header">
+                <h3>专门化方法</h3>
+                <span class="level-tag">特殊应用</span>
+              </div>
+              <div class="specialized-methods">
+                <div class="method-category">
+                  <h4>动力学平均场理论(dynamic mean-field theory,简称DMFT)</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">把晶格模型映射到杂质模型</span>
+                    <div class="method-details">
+                      <p><strong>核心思想：</strong>将多体问题映射为单杂质问题，然后反过来通过自洽求解确定有效介质</p>
+                      <div class="dmft-process">
+                        <h5>求解流程：</h5>
+                        <ol>
+                          <li>构造有效杂质模型</li>
+                          <li>求解杂质问题得到格林函数</li>
+                          <li>通过自洽条件确定有效介质</li>
+                          <li>迭代直至收敛</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="method-category">
+                  <h4>密度矩阵重整化群(density matrix renormalization group,简称DMRG)</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">是实空间重整化群理论的重要改进</span>
+                    <div class="method-details">
+                      <p><strong>优势：</strong>其特点是把密化密度矩阵的本征值作为重整化群模型求解的良好方法</p>
+                      <div class="dmrg-advantages">
+                        <h5>主要优点：</h5>
+                        <ul>
+                          <li>保持系统的量子纠缠信息</li>
+                          <li>适用于一维强关联系统</li>
+                          <li>数值精度极高</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="method-category">
+                  <h4>张量网络(tensor network)</h4>
+                  <div class="method-description">
+                    <span class="method-tag yellow">把系统的波函数数据按张量乘积形式</span>
+                    <div class="method-details">
+                      <p><strong>现代发展：</strong>通过变分最优化张量波函数的每一个元素得到系统状态的近似描述</p>
+                      <div class="tensor-network-types">
+                        <h5>主要类型：</h5>
+                        <ul>
+                          <li><strong>MPS：</strong>矩阵乘积态，适用于一维系统</li>
+                          <li><strong>PEPS：</strong>投影纠缠对态，适用于二维系统</li>
+                          <li><strong>MERA：</strong>多尺度纠缠重整化，处理临界系统</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="approximation-summary">
+            <h3>近似方法的选择原则</h3>
+            <div class="selection-principles">
+              <div class="principle-item">
+                <h4>🎯 物理图像的清晰性</h4>
+                <p>选择能够提供清晰物理图像的近似方法，有助于理解系统的本质特征</p>
+              </div>
+              <div class="principle-item">
+                <h4>⚖️ 精度与计算成本的平衡</h4>
+                <p>根据研究目的和计算资源，在精度要求和计算复杂度之间找到最佳平衡点</p>
+              </div>
+              <div class="principle-item">
+                <h4>🔍 系统特征的匹配</h4>
+                <p>不同的近似方法适用于不同类型的系统，需要根据系统的具体特征选择合适的方法</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>自由电子近似的详细讨论</h2>
+        <div class="free-electron-detailed">
+          <div class="approximation-context">
+            <p class="context-text">
+              在多体薛定谔方程中忽略外势以及电子之间的相互作用，就是自由电子近似，此时可得
+            </p>
+            <div class="simplified-equation">
+              <div class="equation-formula large">
+                iℏ ∂ψ(r⃗₁,...,r⃗ₙ; t)/∂t = Σᵢ₌₁ᴺ (-ℏ²/2mₑ)∇ᵢ²ψ(r⃗₁,...,r⃗ₙ; t)
+              </div>
+            </div>
+          </div>
+
+          <div class="solution-approach">
+            <h3>求解方法</h3>
+            <div class="solution-steps">
+              <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>变量分离</h4>
+                  <p>现在每个电子都是独立运动的，电子运动就是最熟悉的自由运动，此时单电子波函数是平面波的形式：</p>
+                  <div class="equation-formula">
+                    ψ(r⃗ᵢ, t) = (1/√V)e^(ik⃗ᵢ·r⃗ᵢ - iEᵢt/ℏ)
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>能量本征值</h4>
+                  <p>对于单个电子，代入定态薛定谔方程：</p>
+                  <div class="equation-formula">
+                    (-ℏ²/2mₑ)∇²ψ(r⃗ᵢ) = Eψ(r⃗ᵢ)
+                  </div>
+                  <p>得到能量本征值：</p>
+                  <div class="equation-formula">
+                    E = ℏ²k²/(2mₑ)
+                  </div>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>多体波函数构造</h4>
+                  <p>至于如何用单电子波函数ψ(r⃗ᵢ)构造多电子波函数ψ(r⃗₁,...,r⃗ₙ; t)则是后续章节的问题，其核心在于必须满足Pauli不相容原理或者说费米统计的要求。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="physical-implications">
+            <h3>物理含义与应用</h3>
+            <div class="implications-grid">
+              <div class="implication-item">
+                <h4>🌊 波粒二象性</h4>
+                <p>电子既表现为粒子（具有确定的动量ℏk），又表现为波（平面波形式）</p>
+              </div>
+              <div class="implication-item">
+                <h4>📊 统计性质</h4>
+                <p>大量自由电子构成费米气体，遵循费米-狄拉克统计分布</p>
+              </div>
+              <div class="implication-item">
+                <h4>🔧 实际应用</h4>
+                <p>虽然是最简单的近似，但在理解金属的基本电学和热学性质方面仍然非常有用</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>独立电子近似的深入分析</h2>
+        <div class="independent-electron-detailed">
+          <div class="approximation-motivation">
+            <p class="motivation-text">
+              在自由电子近似的基础上考虑外场势得到独立电子近似
+            </p>
+            <div class="modified-equation">
+              <div class="equation-formula large">
+                iℏ ∂ψ(r⃗₁,...,r⃗ₙ; t)/∂t = [Σᵢ₌₁ᴺ (-ℏ²/2mₑ)∇ᵢ² + Vₑₓₜ(r⃗ᵢ)] ψ(r⃗₁,...,r⃗ₙ; t)
+              </div>
+            </div>
+          </div>
+
+          <div class="single-particle-picture">
+            <h3>单粒子图像</h3>
+            <div class="single-particle-content">
+              <p>此时每个电子依然独立运动，但由于受到外场影响，其波函数不再是简单的平面波，而是要满足单粒子薛定谔方程：</p>
+              <div class="single-particle-equation">
+                <div class="equation-formula">
+                  iℏ ∂ψ(r⃗ᵢ, t)/∂t = [-ℏ²/(2mₑ)∇² + Vₑₓₜ(r⃗ᵢ)] ψ(r⃗ᵢ, t)
+                </div>
+              </div>
+              <p>对于不含时外势，可以进一步简化为定态薛定谔方程：</p>
+              <div class="eigenvalue-equation">
+                <div class="equation-formula">
+                  [-ℏ²/(2mₑ)∇² + Vₑₓₜ(r⃗ᵢ)] ψ(r⃗ᵢ) = Eψ(r⃗ᵢ)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="external-potential-types">
+            <h3>常见外势类型</h3>
+            <div class="potential-showcase">
+              <div class="potential-card">
+                <h4>🔶 周期势场</h4>
+                <div class="potential-details">
+                  <div class="equation-formula">V(r⃗) = V(r⃗ + R⃗)</div>
+                  <p><strong>物理来源：</strong>晶格中离子实产生的周期性势场</p>
+                  <div class="applications">
+                    <h5>重要结果：</h5>
+                    <ul>
+                      <li>布洛赫定理</li>
+                      <li>能带结构</li>
+                      <li>布里渊区</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="potential-card">
+                <h4>⚡ 电磁场</h4>
+                <div class="potential-details">
+                  <div class="equation-formula">V = -eE⃗·r⃗ - μ⃗·B⃗</div>
+                  <p><strong>物理效应：</strong>斯塔克效应、塞曼效应</p>
+                  <div class="applications">
+                    <h5>实验应用：</h5>
+                    <ul>
+                      <li>霍尔效应</li>
+                      <li>磁阻效应</li>
+                      <li>光电效应</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="potential-card">
+                <h4>🌀 应变场</h4>
+                <div class="potential-details">
+                  <div class="equation-formula">V ∝ ∇·u⃗(r⃗)</div>
+                  <p><strong>物理来源：</strong>晶格形变引起的有效势场</p>
+                  <div class="applications">
+                    <h5>相关现象：</h5>
+                    <ul>
+                      <li>压电效应</li>
+                      <li>应变工程</li>
+                      <li>声子-电子耦合</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="limitations-discussion">
+            <h3>近似的局限性</h3>
+            <div class="limitations-content">
+              <p class="limitation-intro">
+                显然，无论是自由电子近似还是独立电子近似都完全忽略电子-电子之间的相互作用，
+                这对于弱关联或者考虑关联电子系统，例如电子或者电子主导的材料，
+                忽略相互作用是导致某些重要的物理效果。这要求明确考虑电子之间的相互作用，
+                并对相互作用的效果做出实质上的处理，而不是简单的近似。
+              </p>
+              
+              <div class="correlation-effects">
+                <h4>被忽略的关联效应</h4>
+                <div class="effect-grid">
+                  <div class="effect-item">
+                    <h5>🔄 交换关联</h5>
+                    <p>电子的反对称性导致的交换效应和库仑相互作用的关联效应</p>
+                  </div>
+                  <div class="effect-item">
+                    <h5>🌡️ 多体激发</h5>
+                    <p>等离激元、磁子等集体激发模式</p>
+                  </div>
+                  <div class="effect-item">
+                    <h5>⚡ 强关联现象</h5>
+                    <p>Mott绝缘体、高温超导等强关联电子现象</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
         <h2>统计力学基本方程</h2>
         <div class="statistical-mechanics-section">
           <div class="ensemble-theory">

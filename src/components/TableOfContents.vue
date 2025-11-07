@@ -66,8 +66,18 @@ function filterChapters(chapters: ChapterNode[], query: string): ChapterNode[] {
 }
 
 function handleChapterSelect(chapter: ChapterNode) {
-  selectedChapterId.value = chapter.id
-  emit('chapterSelect', chapter)
+  try {
+    // 确保章节对象有效
+    if (!chapter || !chapter.id) {
+      console.warn('Invalid chapter selected:', chapter)
+      return
+    }
+    
+    selectedChapterId.value = chapter.id
+    emit('chapterSelect', chapter)
+  } catch (error) {
+    console.error('Error in handleChapterSelect:', error)
+  }
 }
 </script>
 

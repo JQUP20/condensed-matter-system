@@ -44,20 +44,20 @@
       </div>
     </section>
 
-    <!-- 第一部分：晶体结构 -->
-    <section class="crystal-structure-problems">
-      <h2>第一部分：晶体结构</h2>
+    <!-- 习题1：一些概念 -->
+    <section class="concept-problems">
+      <h2>习题1：一些概念</h2>
       
       <div class="problem-set">
         <div class="problem-card">
           <div class="problem-header">
-            <span class="problem-number">1.1</span>
-            <h3>布拉维格子</h3>
+            <span class="problem-number">Q1</span>
+            <h3>达原理和早期设备列举</h3>
             <span class="difficulty easy">基础</span>
           </div>
           <div class="problem-content">
             <div class="problem-statement">
-              <p><strong>问题：</strong>在三维空间中，共有多少种布拉维格子？请列出它们的名称，并简述每种格子的特点。</p>
+              <p><strong>问题：</strong>对于达原理和早期设备列举一个例子进行说明。</p>
             </div>
             
             <div class="solution-section">
@@ -66,63 +66,39 @@
                 <div class="step">
                   <span class="step-number">1</span>
                   <div class="step-content">
-                    <p>回顾布拉维格子的定义：通过平移操作能够重现自身的点阵</p>
+                    <p>理解达原理（可能指的是达朗贝尔原理或其他物理原理）的基本概念</p>
                   </div>
                 </div>
                 <div class="step">
                   <span class="step-number">2</span>
                   <div class="step-content">
-                    <p>按照晶系分类：立方、四方、正交、六方、三角、单斜、三斜</p>
+                    <p>选择一个具体的早期设备作为例子</p>
                   </div>
                 </div>
                 <div class="step">
                   <span class="step-number">3</span>
                   <div class="step-content">
-                    <p>考虑每个晶系中可能的格点排列方式</p>
+                    <p>详细说明该设备如何体现相关原理</p>
                   </div>
                 </div>
               </div>
               
               <div class="detailed-answer">
                 <h4>详细解答</h4>
-                <p><strong>答案：</strong>三维空间中共有14种布拉维格子</p>
+                <p><strong>答案：</strong>以早期的电子管设备为例</p>
                 
-                <div class="bravais-lattices">
-                  <div class="lattice-category">
-                    <h5>立方晶系 (3种)</h5>
-                    <ul>
-                      <li><strong>简单立方 (P)：</strong>格点仅在立方体顶点</li>
-                      <li><strong>体心立方 (I)：</strong>格点在顶点和体心</li>
-                      <li><strong>面心立方 (F)：</strong>格点在顶点和面心</li>
-                    </ul>
+                <div class="example-analysis">
+                  <div class="device-description">
+                    <h5>设备描述</h5>
+                    <p>真空电子管是20世纪初期重要的电子器件，利用热电子发射原理工作。</p>
                   </div>
                   
-                  <div class="lattice-category">
-                    <h5>四方晶系 (2种)</h5>
+                  <div class="principle-explanation">
+                    <h5>原理说明</h5>
                     <ul>
-                      <li><strong>简单四方 (P)：</strong>a = b ≠ c，α = β = γ = 90°</li>
-                      <li><strong>体心四方 (I)：</strong>在简单四方基础上加体心</li>
-                    </ul>
-                  </div>
-                  
-                  <div class="lattice-category">
-                    <h5>正交晶系 (4种)</h5>
-                    <ul>
-                      <li><strong>简单正交 (P)：</strong>a ≠ b ≠ c，α = β = γ = 90°</li>
-                      <li><strong>体心正交 (I)：</strong>加体心格点</li>
-                      <li><strong>面心正交 (F)：</strong>加面心格点</li>
-                      <li><strong>底心正交 (C)：</strong>仅在一对面的中心有格点</li>
-                    </ul>
-                  </div>
-                  
-                  <div class="lattice-category">
-                    <h5>其他晶系 (5种)</h5>
-                    <ul>
-                      <li><strong>六方 (P)：</strong>a = b ≠ c，α = β = 90°，γ = 120°</li>
-                      <li><strong>三角 (R)：</strong>菱面体格子</li>
-                      <li><strong>简单单斜 (P)：</strong>a ≠ b ≠ c，α = γ = 90° ≠ β</li>
-                      <li><strong>底心单斜 (C)：</strong>在简单单斜基础上加底心</li>
-                      <li><strong>三斜 (P)：</strong>a ≠ b ≠ c，α ≠ β ≠ γ ≠ 90°</li>
+                      <li><strong>热电子发射：</strong>加热阴极使电子获得足够能量逸出表面</li>
+                      <li><strong>电场控制：</strong>通过栅极电压控制电子流</li>
+                      <li><strong>能量转换：</strong>将电信号转换为电子束的动能变化</li>
                     </ul>
                   </div>
                 </div>
@@ -130,6 +106,131 @@
             </div>
           </div>
         </div>
+
+        <div class="problem-card">
+          <div class="problem-header">
+            <span class="problem-number">Q2</span>
+            <h3>能带理论概念区别</h3>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="problem-content">
+            <div class="problem-statement">
+              <p><strong>问题：</strong>解释什么是能带理论，并用其解释金属与绝缘体的区别。</p>
+            </div>
+            
+            <div class="solution-section">
+              <h4>理论基础</h4>
+              <div class="theory-content">
+                <div class="band-theory-intro">
+                  <h5>能带理论简介</h5>
+                  <p>能带理论是描述固体中电子能级分布的量子力学理论，解释了固体的电学性质。</p>
+                </div>
+                
+                <div class="band-formation">
+                  <h5>能带形成机制</h5>
+                  <ul>
+                    <li><strong>原子轨道重叠：</strong>大量原子聚集时，原子轨道相互重叠</li>
+                    <li><strong>能级分裂：</strong>简并能级分裂成准连续的能带</li>
+                    <li><strong>禁带形成：</strong>相邻能带间形成禁止的能量区域</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="detailed-answer">
+                <h4>金属与绝缘体的区别</h4>
+                
+                <div class="material-comparison">
+                  <div class="metal-properties">
+                    <h5>金属特性</h5>
+                    <ul>
+                      <li><strong>价带未满：</strong>最高占据能带（价带）未被完全填满</li>
+                      <li><strong>无禁带：</strong>价带与导带重叠或禁带宽度为零</li>
+                      <li><strong>自由电子：</strong>电子可在价带内自由移动</li>
+                      <li><strong>良好导电性：</strong>在外电场作用下电子易于移动</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="insulator-properties">
+                    <h5>绝缘体特性</h5>
+                    <ul>
+                      <li><strong>价带全满：</strong>价带被电子完全填满</li>
+                      <li><strong>大禁带：</strong>价带与导带间存在较宽的禁带（>3eV）</li>
+                      <li><strong>束缚电子：</strong>电子被束缚在价带中</li>
+                      <li><strong>绝缘性质：</strong>常温下电子难以跃迁到导带</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-header">
+            <span class="problem-number">Q4</span>
+            <h3>费米面概念</h3>
+            <span class="difficulty medium">中等</span>
+          </div>
+          <div class="problem-content">
+            <div class="solution-section">
+              <h4>理论基础</h4>
+              <div class="theory-content">
+                <div class="fermi-surface-intro">
+                  <h5>费米面定义</h5>
+                  <p>费米面是k空间中将占据态和空态分开的界面，对应于费米能级EF的等能面。</p>
+                </div>
+                
+                <div class="fermi-properties">
+                  <h5>费米面性质</h5>
+                  <ul>
+                    <li><strong>T=0K时：</strong>费米面内所有态被占据，费米面外所有态为空</li>
+                    <li><strong>有限温度：</strong>费米面附近存在热激发，界面变得模糊</li>
+                    <li><strong>几何形状：</strong>决定材料的输运性质和电子性质</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="detailed-answer">
+                <h4>一维费米气体的费米面</h4>
+                
+                <div class="one-d-analysis">
+                  <div class="mathematical-description">
+                    <h5>数学描述</h5>
+                    <div class="equation-box">
+                      <p>一维情况下：E(k) = ℏ²k²/(2m)</p>
+                      <p>费米波矢：kF = √(2mEF)/ℏ</p>
+                    </div>
+                  </div>
+                  
+                  <div class="fermi-surface-1d">
+                    <h5>一维费米面特点</h5>
+                    <ul>
+                      <li><strong>两个点：</strong>费米面由k = ±kF两个点组成</li>
+                      <li><strong>对称性：</strong>关于k = 0对称分布</li>
+                      <li><strong>占据区间：</strong>[-kF, +kF]区间内的态被占据</li>
+                    </ul>
+                  </div>
+                  
+                  <div class="diagram-description">
+                    <h5>示意图描述</h5>
+                    <p>在k轴上，费米面表现为两个点：</p>
+                    <div class="ascii-diagram">
+                      <pre>
+    占据态    |    空态
+  ←─────────●─────────→ k
+           -kF    0    +kF
+                       
+    ● 表示费米面（两个点）
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
         <div class="problem-card">
           <div class="problem-header">
@@ -218,8 +319,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
+
 
     <!-- 第二部分：倒格子与布里渊区 -->
     <section class="reciprocal-lattice-problems">

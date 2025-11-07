@@ -68,31 +68,35 @@
         <h3>理想导体 vs 超导体</h3>
         <div class="data-table">
           <table>
-            <tr>
-              <th>性质</th>
-              <th>理想导体</th>
-              <th>超导体</th>
-            </tr>
-            <tr>
-              <td>电阻</td>
-              <td>ρ = 0</td>
-              <td>ρ = 0</td>
-            </tr>
-            <tr>
-              <td>磁场变化响应</td>
-              <td>阻止磁场变化</td>
-              <td>排斥所有磁场</td>
-            </tr>
-            <tr>
-              <td>冷却过程</td>
-              <td>保持原有磁场</td>
-              <td>排斥磁场</td>
-            </tr>
-            <tr>
-              <td>热力学性质</td>
-              <td>不可逆过程</td>
-              <td>可逆过程</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>性质</th>
+                <th>理想导体</th>
+                <th>超导体</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>电阻</td>
+                <td>ρ = 0</td>
+                <td>ρ = 0</td>
+              </tr>
+              <tr>
+                <td>磁场变化响应</td>
+                <td>阻止磁场变化</td>
+                <td>排斥所有磁场</td>
+              </tr>
+              <tr>
+                <td>冷却过程</td>
+                <td>保持原有磁场</td>
+                <td>排斥磁场</td>
+              </tr>
+              <tr>
+                <td>热力学性质</td>
+                <td>不可逆过程</td>
+                <td>可逆过程</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -158,19 +162,23 @@
         </div>
       </div>
       
-      <div class="typical-values">
-        <h3>典型数值</h3>
-        <div class="data-table">
-          <table>
-            <tr><th>材料</th><th>λ_L (nm)</th><th>T_c (K)</th></tr>
-            <tr><td>Al</td><td>50</td><td>1.2</td></tr>
-            <tr><td>Sn</td><td>34</td><td>3.7</td></tr>
-            <tr><td>Pb</td><td>37</td><td>7.2</td></tr>
-            <tr><td>Nb</td><td>39</td><td>9.3</td></tr>
-            <tr><td>YBCO</td><td>150</td><td>93</td></tr>
-          </table>
+        <div class="typical-values">
+          <h3>典型数值</h3>
+          <div class="data-table">
+            <table>
+              <thead>
+                <tr><th>材料</th><th>λ_L (nm)</th><th>T_c (K)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Al</td><td>50</td><td>1.2</td></tr>
+                <tr><td>Sn</td><td>34</td><td>3.7</td></tr>
+                <tr><td>Pb</td><td>37</td><td>7.2</td></tr>
+                <tr><td>Nb</td><td>39</td><td>9.3</td></tr>
+                <tr><td>YBCO</td><td>150</td><td>93</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
     </section>
 
     <section class="surface-currents">

@@ -2,25 +2,39 @@
   <div class="content-display">
     <div v-if="selectedChapter" class="content-container">
       <!-- 如果有详细页面组件，直接显示组件 -->
-      <component 
-        v-if="hasDetailedComponent" 
-        :is="currentChapterComponent"
-      />
+      <template v-if="hasDetailedComponent && currentChapterComponent">
+        <Suspense>
+          <template #default>
+            <KeepAlive>
+              <component 
+                :is="currentChapterComponent"
+                :key="selectedChapter.id"
+              />
+            </KeepAlive>
+          </template>
+          <template #fallback>
+            <div class="loading-container">
+              <div class="loading-spinner"></div>
+              <p>正在加载章节内容...</p>
+            </div>
+          </template>
+        </Suspense>
+      </template>
       
       <!-- 否则显示原有的内容显示方式 -->
-      <div v-else>
+      <div v-else :key="selectedChapter.id">
         <div class="content-header">
-          <div class="breadcrumb">
+          <div v-if="breadcrumbs && breadcrumbs.length > 0" class="breadcrumb">
             <span 
               v-for="(crumb, index) in breadcrumbs" 
-              :key="crumb.id"
+              :key="`breadcrumb-${crumb.id}-${index}`"
               class="breadcrumb-item"
             >
               <span v-if="index > 0" class="breadcrumb-separator">/</span>
-              {{ crumb.title }}
+              {{ crumb.title || '未知章节' }}
             </span>
           </div>
-          <h1 class="content-title">{{ selectedChapter.title }}</h1>
+          <h1 class="content-title">{{ selectedChapter.title || '未知章节' }}</h1>
         </div>
         
         <div class="content-body">
@@ -38,11 +52,11 @@
             <h3 class="subsections-title">子章节</h3>
             <div class="subsections-grid">
               <div 
-                v-for="child in selectedChapter.children"
-                :key="child.id"
-                class="subsection-card"
-                @click="$emit('chapterSelect', child)"
-              >
+              v-for="child in selectedChapter.children"
+              :key="`child-${child.id}`"
+              class="subsection-card"
+              @click="$emit('chapterSelect', child)"
+            >
                 <h4 class="subsection-title">{{ child.title }}</h4>
                 <p class="subsection-description">
                   {{ child.content || '点击查看详细内容' }}
@@ -78,6 +92,52 @@ import Chapter1_3 from './chapters/Chapter1_3.vue'
 import Chapter1_4 from './chapters/Chapter1_4.vue'
 import Chapter1_4_1 from './chapters/Chapter1_4_1.vue'
 import Chapter1_4_2 from './chapters/Chapter1_4_2.vue'
+import Chapter1_4_3 from './chapters/Chapter1_4_3.vue'
+import Chapter1_4_4 from './chapters/Chapter1_4_4.vue'
+import Chapter1_4_5 from './chapters/Chapter1_4_5.vue'
+import Chapter1_4_6 from './chapters/Chapter1_4_6.vue'
+import Chapter1_4_7 from './chapters/Chapter1_4_7.vue'
+import Chapter1_4_8 from './chapters/Chapter1_4_8.vue'
+import Chapter1_4_9 from './chapters/Chapter1_4_9.vue'
+import Chapter1_4_10 from './chapters/Chapter1_4_10.vue'
+import Chapter1_4_11 from './chapters/Chapter1_4_11.vue'
+import Chapter1_4_12 from './chapters/Chapter1_4_12.vue'
+import Chapter1_4_13 from './chapters/Chapter1_4_13.vue'
+import Chapter1_4_14 from './chapters/Chapter1_4_14.vue'
+import Chapter1_4_15 from './chapters/Chapter1_4_15.vue'
+import Chapter1_4_16 from './chapters/Chapter1_4_16.vue'
+import Chapter1_4_17 from './chapters/Chapter1_4_17.vue'
+import Chapter1_4_18 from './chapters/Chapter1_4_18.vue'
+import Chapter1_4_19 from './chapters/Chapter1_4_19.vue'
+import Chapter1_4_20 from './chapters/Chapter1_4_20.vue'
+import Chapter1_4_21 from './chapters/Chapter1_4_21.vue'
+import Chapter1_4_22 from './chapters/Chapter1_4_22.vue'
+import Chapter1_4_23 from './chapters/Chapter1_4_23.vue'
+import Chapter1_4_24 from './chapters/Chapter1_4_24.vue'
+import Chapter1_4_25 from './chapters/Chapter1_4_25.vue'
+import Chapter1_4_26 from './chapters/Chapter1_4_26.vue'
+import Chapter1_4_27 from './chapters/Chapter1_4_27.vue'
+import Chapter1_4_28 from './chapters/Chapter1_4_28.vue'
+import Chapter1_4_29 from './chapters/Chapter1_4_29.vue'
+import Chapter1_4_30 from './chapters/Chapter1_4_30.vue'
+import Chapter1_4_31 from './chapters/Chapter1_4_31.vue'
+import Chapter1_4_32 from './chapters/Chapter1_4_32.vue'
+import Chapter1_4_33 from './chapters/Chapter1_4_33.vue'
+import Chapter1_4_34 from './chapters/Chapter1_4_34.vue'
+import Chapter1_4_35 from './chapters/Chapter1_4_35.vue'
+import Chapter1_4_36 from './chapters/Chapter1_4_36.vue'
+import Chapter1_4_37 from './chapters/Chapter1_4_37.vue'
+import Chapter1_4_38 from './chapters/Chapter1_4_38.vue'
+import Chapter1_4_39 from './chapters/Chapter1_4_39.vue'
+import Chapter1_4_40 from './chapters/Chapter1_4_40.vue'
+import Chapter1_4_41 from './chapters/Chapter1_4_41.vue'
+import Chapter1_4_42 from './chapters/Chapter1_4_42.vue'
+import Chapter1_4_43 from './chapters/Chapter1_4_43.vue'
+import Chapter1_4_44 from './chapters/Chapter1_4_44.vue'
+import Chapter1_4_45 from './chapters/Chapter1_4_45.vue'
+import Chapter1_4_46 from './chapters/Chapter1_4_46.vue'
+import Chapter1_4_47 from './chapters/Chapter1_4_47.vue'
+import Chapter1_4_48 from './chapters/Chapter1_4_48.vue'
 import Chapter1_5 from './chapters/Chapter1_5.vue'
 import Chapter1_5_1 from './chapters/Chapter1_5_1.vue'
 import Chapter1_5_2 from './chapters/Chapter1_5_2.vue'
@@ -93,13 +153,23 @@ import Chapter1_9_1 from './chapters/Chapter1_9_1.vue'
 import Chapter1_9_2 from './chapters/Chapter1_9_2.vue'
 import Chapter1_9_3 from './chapters/Chapter1_9_3.vue'
 import Chapter2_1 from './chapters/Chapter2_1.vue'
+import Chapter2_1_1 from './chapters/Chapter2_1_1.vue'
+import Chapter2_1_2 from './chapters/Chapter2_1_2.vue'
+import Chapter2_1_3 from './chapters/Chapter2_1_3.vue'
+import Chapter2_1_4 from './chapters/Chapter2_1_4.vue'
 import Chapter2_2 from './chapters/Chapter2_2.vue'
 import Chapter2_2_1 from './chapters/Chapter2_2_1.vue'
 import Chapter2_3 from './chapters/Chapter2_3.vue'
 import Chapter2_3_1 from './chapters/Chapter2_3_1.vue'
 import Chapter2_3_2 from './chapters/Chapter2_3_2.vue'
+import Chapter2_3_2_1 from './chapters/Chapter2_3_2_1.vue'
+import Chapter2_3_2_2 from './chapters/Chapter2_3_2_2.vue'
 import Chapter2_3_3 from './chapters/Chapter2_3_3.vue'
 import Chapter2_3_4 from './chapters/Chapter2_3_4.vue'
+import Chapter2_3_4_1 from './chapters/Chapter2_3_4_1.vue'
+import Chapter2_3_4_2 from './chapters/Chapter2_3_4_2.vue'
+import Chapter2_3_4_3 from './chapters/Chapter2_3_4_3.vue'
+import Chapter2_3_4_4 from './chapters/Chapter2_3_4_4.vue'
 import Chapter2_4 from './chapters/Chapter2_4.vue'
 import Chapter2_4_1 from './chapters/Chapter2_4_1.vue'
 import Chapter2_4_2 from './chapters/Chapter2_4_2.vue'
@@ -376,6 +446,52 @@ const chapterComponents = {
   '1.4': Chapter1_4,
   '1.4.1': Chapter1_4_1,
   '1.4.2': Chapter1_4_2,
+  '1.4.3': Chapter1_4_3,
+  '1.4.4': Chapter1_4_4,
+  '1.4.5': Chapter1_4_5,
+  '1.4.6': Chapter1_4_6,
+  '1.4.7': Chapter1_4_7,
+  '1.4.8': Chapter1_4_8,
+  '1.4.9': Chapter1_4_9,
+      '1.4.10': Chapter1_4_10,
+      '1.4.11': Chapter1_4_11,
+      '1.4.12': Chapter1_4_12,
+      '1.4.13': Chapter1_4_13,
+      '1.4.14': Chapter1_4_14,
+      '1.4.15': Chapter1_4_15,
+      '1.4.16': Chapter1_4_16,
+      '1.4.17': Chapter1_4_17,
+      '1.4.18': Chapter1_4_18,
+      '1.4.19': Chapter1_4_19,
+      '1.4.20': Chapter1_4_20,
+      '1.4.21': Chapter1_4_21,
+      '1.4.22': Chapter1_4_22,
+      '1.4.23': Chapter1_4_23,
+      '1.4.24': Chapter1_4_24,
+      '1.4.25': Chapter1_4_25,
+      '1.4.26': Chapter1_4_26,
+      '1.4.27': Chapter1_4_27,
+      '1.4.28': Chapter1_4_28,
+      '1.4.29': Chapter1_4_29,
+      '1.4.30': Chapter1_4_30,
+      '1.4.31': Chapter1_4_31,
+      '1.4.32': Chapter1_4_32,
+      '1.4.33': Chapter1_4_33,
+      '1.4.34': Chapter1_4_34,
+      '1.4.35': Chapter1_4_35,
+      '1.4.36': Chapter1_4_36,
+      '1.4.37': Chapter1_4_37,
+      '1.4.38': Chapter1_4_38,
+      '1.4.39': Chapter1_4_39,
+      '1.4.40': Chapter1_4_40,
+      '1.4.41': Chapter1_4_41,
+      '1.4.42': Chapter1_4_42,
+      '1.4.43': Chapter1_4_43,
+      '1.4.44': Chapter1_4_44,
+      '1.4.45': Chapter1_4_45,
+      '1.4.46': Chapter1_4_46,
+      '1.4.47': Chapter1_4_47,
+      '1.4.48': Chapter1_4_48,
   '1.5': Chapter1_5,
   '1.5.1': Chapter1_5_1,
   '1.5.2': Chapter1_5_2,
@@ -391,13 +507,23 @@ const chapterComponents = {
   '1.9.2': Chapter1_9_2,
   '1.9.3': Chapter1_9_3,
   '2.1': Chapter2_1,
+  '2.1.1': Chapter2_1_1,
+  '2.1.2': Chapter2_1_2,
+  '2.1.3': Chapter2_1_3,
+  '2.1.4': Chapter2_1_4,
   '2.2': Chapter2_2,
   '2.2.1': Chapter2_2_1,
   '2.3': Chapter2_3,
   '2.3.1': Chapter2_3_1,
   '2.3.2': Chapter2_3_2,
+  '2.3.2.1': Chapter2_3_2_1,
+  '2.3.2.2': Chapter2_3_2_2,
   '2.3.3': Chapter2_3_3,
   '2.3.4': Chapter2_3_4,
+  '2.3.4.1': Chapter2_3_4_1,
+  '2.3.4.2': Chapter2_3_4_2,
+  '2.3.4.3': Chapter2_3_4_3,
+  '2.3.4.4': Chapter2_3_4_4,
   '2.4': Chapter2_4,
   '2.4.1': Chapter2_4_1,
   '2.4.2': Chapter2_4_2,
@@ -683,17 +809,56 @@ const breadcrumbs = computed(() => {
 
 // 获取当前章节对应的详细页面组件
 const currentChapterComponent = computed(() => {
-  if (!props.selectedChapter) return null
-  return chapterComponents[props.selectedChapter.id as keyof typeof chapterComponents] || null
+  if (!props.selectedChapter?.id) return null
+  
+  try {
+    const component = chapterComponents[props.selectedChapter.id as keyof typeof chapterComponents]
+    return component || null
+  } catch (error) {
+    console.warn(`Failed to load component for chapter ${props.selectedChapter.id}:`, error)
+    return null
+  }
 })
 
 // 判断是否有详细页面组件
 const hasDetailedComponent = computed(() => {
-  return currentChapterComponent.value !== null
+  if (!props.selectedChapter?.id) return false
+  
+  try {
+    const component = currentChapterComponent.value
+    return component !== null && component !== undefined
+  } catch (error) {
+    console.warn(`Error checking component for chapter ${props.selectedChapter.id}:`, error)
+    return false
+  }
 })
 </script>
 
 <style scoped>
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #e5e7eb;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .content-display {
   flex: 1;
   height: 100vh;

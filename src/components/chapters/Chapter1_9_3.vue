@@ -28,245 +28,255 @@
       </div>
     </section>
 
-    <!-- 理论基础 -->
-    <section class="theoretical-foundation">
-      <h2>理论基础</h2>
+    <!-- 主要习题：Wiedemann-Franz律推导 -->
+    <section class="main-exercise">
+      <h2>习题3：Wiedemann-Franz律</h2>
       
-      <div class="theory-grid">
-        <div class="theory-card">
-          <h3>🔬 经典理论</h3>
-          <p>基于Drude模型的推导</p>
-          <div class="formula-box">
-            <p>L = (π²/3)(k_B/e)² = 2.44 × 10⁻⁸ W·Ω/K²</p>
+      <div class="problem-set">
+        <div class="problem-card main-problem">
+          <div class="problem-header">
+            <span class="problem-number">核心题目</span>
+            <h3>基于电子气体理论的Wiedemann-Franz律推导</h3>
+            <span class="difficulty high">重点</span>
           </div>
-        </div>
-        
-        <div class="theory-card">
-          <h3>⚛️ 量子理论</h3>
-          <p>基于Fermi-Dirac统计的精确结果</p>
-          <div class="formula-box">
-            <p>L = (π²/3)(k_B/e)² = 2.45 × 10⁻⁸ W·Ω/K²</p>
-          </div>
-        </div>
-        
-        <div class="theory-card">
-          <h3>📊 实验验证</h3>
-          <p>大多数金属在室温下符合该定律</p>
-          <div class="formula-box">
-            <p>偏差通常 < 10%</p>
+          <div class="problem-content">
+            <div class="problem-statement">
+              <p><strong>问题：</strong>金属在不太低的温度下，其热导率和电导率之间存在正比关系，即：</p>
+              <div class="equation-box highlight">
+                <p><strong>κ/σ = LT</strong></p>
+              </div>
+              <p>其中L是Lorenz数，T是绝对温度。请基于电子气体的电导率和热导率理论，解释这一关系。</p>
+              <div class="additional-info">
+                <p><strong>提示：</strong>考虑电子气体的电导率σ和热导率κ的表达式，分析它们的比值。</p>
+              </div>
+            </div>
+            
+            <div class="solution-section">
+              <h4>完整推导过程</h4>
+              
+              <div class="derivation-steps">
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤1</span>
+                    <h5>电导率的表达式</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>根据Drude模型，电子气体的电导率为：</p>
+                    <div class="equation-box">
+                      <p><strong>σ = ne²τ/m</strong></p>
+                    </div>
+                    <p>其中：</p>
+                    <ul>
+                      <li>n - 电子密度</li>
+                      <li>e - 电子电荷</li>
+                      <li>τ - 弛豫时间</li>
+                      <li>m - 电子质量</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤2</span>
+                    <h5>热导率的表达式</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>电子对热导率的贡献可以用动力学理论表示：</p>
+                    <div class="equation-box">
+                      <p><strong>κ = (1/3)nv̄C_vλ</strong></p>
+                    </div>
+                    <p>其中：</p>
+                    <ul>
+                      <li>v̄ - 电子的平均速度</li>
+                      <li>C_v - 电子的比热容</li>
+                      <li>λ - 平均自由程</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤3</span>
+                    <h5>建立关键关系</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>利用以下关系：</p>
+                    <div class="equation-box">
+                      <p><strong>λ = v̄τ</strong> （平均自由程与弛豫时间的关系）</p>
+                    </div>
+                    <p>对于费米气体，在温度T << T_F时：</p>
+                    <div class="equation-box">
+                      <p><strong>v̄ ≈ v_F</strong> （平均速度近似为费米速度）</p>
+                    </div>
+                    <p>电子比热容为：</p>
+                    <div class="equation-box">
+                      <p><strong>C_v = (π²/2)nk_B(T/T_F)</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤4</span>
+                    <h5>代入热导率表达式</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>将关系代入热导率公式：</p>
+                    <div class="equation-box">
+                      <p>κ = (1/3)nv_F × (π²/2)nk_B(T/T_F) × v_Fτ</p>
+                    </div>
+                    <p>化简得：</p>
+                    <div class="equation-box">
+                      <p><strong>κ = (π²/6)n²k_Bv_F²τ(T/T_F)</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤5</span>
+                    <h5>利用费米速度关系</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>费米速度与费米温度的关系：</p>
+                    <div class="equation-box">
+                      <p><strong>T_F = mv_F²/(2k_B)</strong></p>
+                    </div>
+                    <p>因此：</p>
+                    <div class="equation-box">
+                      <p><strong>v_F² = 2k_BT_F/m</strong></p>
+                    </div>
+                    <p>代入热导率表达式：</p>
+                    <div class="equation-box">
+                      <p>κ = (π²/6)n²k_B × (2k_BT_F/m) × τ × (T/T_F)</p>
+                    </div>
+                    <div class="equation-box">
+                      <p><strong>κ = (π²/3)n²k_B²τT/m</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤6</span>
+                    <h5>计算κ/σ比值</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>计算热导率与电导率的比值：</p>
+                    <div class="equation-box">
+                      <p>κ/σ = [(π²/3)n²k_B²τT/m] / [ne²τ/m]</p>
+                    </div>
+                    <p>约去公共因子：</p>
+                    <div class="equation-box">
+                      <p>κ/σ = (π²/3)nk_B²T/e²</p>
+                    </div>
+                    <p>但这里还需要考虑电子密度n的修正。对于自由电子气体：</p>
+                    <div class="equation-box">
+                      <p><strong>κ/σ = (π²/3)(k_B/e)²T</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="step-card">
+                  <div class="step-header">
+                    <span class="step-number">步骤7</span>
+                    <h5>得到Wiedemann-Franz律</h5>
+                  </div>
+                  <div class="step-content">
+                    <p>定义Lorenz数：</p>
+                    <div class="equation-box final-result">
+                      <p><strong>L = (π²/3)(k_B/e)² = 2.45 × 10⁻⁸ W·Ω/K²</strong></p>
+                    </div>
+                    <p>因此得到Wiedemann-Franz律：</p>
+                    <div class="equation-box highlight">
+                      <p><strong>κ/σ = LT</strong></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="physical-interpretation">
+                <h4>物理意义分析</h4>
+                <div class="interpretation-grid">
+                  <div class="interpretation-item">
+                    <h5>电子的双重作用</h5>
+                    <p>同一批电子既传导电流又传导热量，因此两者存在内在联系</p>
+                  </div>
+                  <div class="interpretation-item">
+                    <h5>Lorenz数的普适性</h5>
+                    <p>L只依赖于基本物理常数，对所有金属都相同</p>
+                  </div>
+                  <div class="interpretation-item">
+                    <h5>温度依赖性</h5>
+                    <p>κ/σ比值与温度成正比，反映了电子热运动的增强</p>
+                  </div>
+                  <div class="interpretation-item">
+                    <h5>实验验证</h5>
+                    <p>大多数金属在室温下都很好地遵循这一定律</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="experimental-verification">
+                <h4>实验验证与应用</h4>
+                <div class="verification-content">
+                  <div class="verification-table">
+                    <h5>典型金属的Lorenz数 (×10⁻⁸ W·Ω/K²)</h5>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>金属</th>
+                          <th>实验值</th>
+                          <th>理论值</th>
+                          <th>偏差(%)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>铜(Cu)</td>
+                          <td>2.23</td>
+                          <td>2.45</td>
+                          <td>-9.0</td>
+                        </tr>
+                        <tr>
+                          <td>银(Ag)</td>
+                          <td>2.31</td>
+                          <td>2.45</td>
+                          <td>-5.7</td>
+                        </tr>
+                        <tr>
+                          <td>金(Au)</td>
+                          <td>2.35</td>
+                          <td>2.45</td>
+                          <td>-4.1</td>
+                        </tr>
+                        <tr>
+                          <td>铝(Al)</td>
+                          <td>2.14</td>
+                          <td>2.45</td>
+                          <td>-12.7</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                  <div class="applications">
+                    <h5>实际应用</h5>
+                    <ul>
+                      <li><strong>材料选择：</strong>根据电导率预测热导率</li>
+                      <li><strong>散热设计：</strong>电子器件的热管理</li>
+                      <li><strong>温度测量：</strong>利用电阻变化测温</li>
+                      <li><strong>合金设计：</strong>优化电热性能比</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 推导过程 -->
-    <section class="derivation">
-      <h2>推导过程</h2>
-      
-      <div class="derivation-steps">
-        <div class="step-card">
-          <h3>步骤1：电导率表达式</h3>
-          <p>根据Drude模型：</p>
-          <div class="formula-box">
-            <p>σ = ne²τ/m</p>
-          </div>
-          <p>其中n是电子密度，τ是弛豫时间，m是电子质量。</p>
-        </div>
-        
-        <div class="step-card">
-          <h3>步骤2：热导率表达式</h3>
-          <p>电子对热导率的贡献：</p>
-          <div class="formula-box">
-            <p>κ = (1/3)nv̄C_vλ</p>
-          </div>
-          <p>其中v̄是平均速度，C_v是比热容，λ是平均自由程。</p>
-        </div>
-        
-        <div class="step-card">
-          <h3>步骤3：关系建立</h3>
-          <p>利用动力学理论关系：</p>
-          <div class="formula-box">
-            <p>λ = v̄τ, C_v = (π²/2)nk_BT/T_F</p>
-          </div>
-          <p>其中T_F是Fermi温度。</p>
-        </div>
-        
-        <div class="step-card">
-          <h3>步骤4：最终结果</h3>
-          <p>代入并化简得到：</p>
-          <div class="formula-box">
-            <p>κ/σT = (π²/3)(k_B/e)² = L</p>
-          </div>
-          <p>这就是Wiedemann-Franz律。</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 习题练习 -->
-    <section class="exercises">
-      <h2>习题练习</h2>
-      
-      <div class="exercise-container">
-        <div class="exercise-problem">
-          <h3>问题1：基本计算</h3>
-          <div class="problem-content">
-            <p><strong>题目：</strong>铜在室温(300K)下的电导率为5.96×10⁷ S/m。根据Wiedemann-Franz律，计算其热导率。</p>
-            
-            <div class="solution">
-              <h4>解答：</h4>
-              <div class="solution-steps">
-                <div class="step">
-                  <p><strong>已知条件：</strong></p>
-                  <ul>
-                    <li>T = 300 K</li>
-                    <li>σ = 5.96 × 10⁷ S/m</li>
-                    <li>L = 2.45 × 10⁻⁸ W·Ω/K²</li>
-                  </ul>
-                </div>
-                
-                <div class="step">
-                  <p><strong>计算过程：</strong></p>
-                  <div class="formula-box">
-                    <p>κ = LσT = 2.45×10⁻⁸ × 5.96×10⁷ × 300</p>
-                    <p>κ = 438 W/m·K</p>
-                  </div>
-                </div>
-                
-                <div class="step">
-                  <p><strong>结果分析：</strong></p>
-                  <p>计算得到的热导率与实验值(401 W/m·K)相当接近，验证了Wiedemann-Franz律的有效性。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="exercise-problem">
-          <h3>问题2：温度依赖性</h3>
-          <div class="problem-content">
-            <p><strong>题目：</strong>分析金属在不同温度下Lorenz数的变化，解释为什么在极低温和极高温下会偏离理论值。</p>
-            
-            <div class="solution">
-              <h4>解答：</h4>
-              <div class="solution-steps">
-                <div class="step">
-                  <p><strong>理论预期：</strong></p>
-                  <p>在理想情况下，Lorenz数应该是常数，不依赖于温度。</p>
-                </div>
-                
-                <div class="step">
-                  <p><strong>实际情况：</strong></p>
-                  <div class="temperature-effects">
-                    <div class="temp-regime">
-                      <h5>低温区域 (T << T_F)</h5>
-                      <ul>
-                        <li>电子-电子散射变得重要</li>
-                        <li>非弹性散射增加</li>
-                        <li>L值通常小于理论值</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="temp-regime">
-                      <h5>中温区域 (T ~ T_F/10)</h5>
-                      <ul>
-                        <li>电子-声子散射占主导</li>
-                        <li>弹性散射近似成立</li>
-                        <li>L值接近理论值</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="temp-regime">
-                      <h5>高温区域 (T > T_F)</h5>
-                      <ul>
-                        <li>声子拖拽效应</li>
-                        <li>多声子过程</li>
-                        <li>L值可能偏离理论值</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="exercise-problem">
-          <h3>问题3：实验数据分析</h3>
-          <div class="problem-content">
-            <p><strong>题目：</strong>下表给出了几种金属在室温下的电导率和热导率数据，验证Wiedemann-Franz律并分析偏差。</p>
-            
-            <div class="data-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th>金属</th>
-                    <th>σ (10⁷ S/m)</th>
-                    <th>κ (W/m·K)</th>
-                    <th>L_exp (10⁻⁸ W·Ω/K²)</th>
-                    <th>偏差 (%)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Cu</td>
-                    <td>5.96</td>
-                    <td>401</td>
-                    <td>2.24</td>
-                    <td>-8.6</td>
-                  </tr>
-                  <tr>
-                    <td>Ag</td>
-                    <td>6.30</td>
-                    <td>429</td>
-                    <td>2.27</td>
-                    <td>-7.3</td>
-                  </tr>
-                  <tr>
-                    <td>Au</td>
-                    <td>4.52</td>
-                    <td>318</td>
-                    <td>2.35</td>
-                    <td>-4.1</td>
-                  </tr>
-                  <tr>
-                    <td>Al</td>
-                    <td>3.77</td>
-                    <td>237</td>
-                    <td>2.10</td>
-                    <td>-14.3</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            
-            <div class="solution">
-              <h4>分析：</h4>
-              <div class="analysis-points">
-                <div class="analysis-item">
-                  <h5>📊 数据验证</h5>
-                  <p>所有金属的实验Lorenz数都接近理论值2.45×10⁻⁸ W·Ω/K²，证实了Wiedemann-Franz律的有效性。</p>
-                </div>
-                
-                <div class="analysis-item">
-                  <h5>📉 偏差分析</h5>
-                  <p>实验值普遍小于理论值，主要原因包括：</p>
-                  <ul>
-                    <li>电子-声子相互作用的非弹性散射</li>
-                    <li>晶界和缺陷的影响</li>
-                    <li>多带效应</li>
-                  </ul>
-                </div>
-                
-                <div class="analysis-item">
-                  <h5>🔍 金属差异</h5>
-                  <p>不同金属的偏差程度不同，反映了其电子结构和散射机制的差异。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- 应用与扩展 -->
     <section class="applications">
